@@ -6,6 +6,8 @@
         upperBound="-1" eType="#//InterfaceComposantFournie" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="interfaceRequise" upperBound="-1"
         eType="#//InterfaceComposantRequise" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="composant" upperBound="-1"
+        eType="#//Composant" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connecteur">
     <eOperations name="Glue">
