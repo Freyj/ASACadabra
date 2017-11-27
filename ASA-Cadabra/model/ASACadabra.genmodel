@@ -27,26 +27,41 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//Configuration/connecteur"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//Configuration/interfaceconfiguration"/>
     </genClasses>
-    <genClasses ecoreClass="ASACadabra.ecore#//PortComposant"/>
-    <genClasses ecoreClass="ASACadabra.ecore#//ServicesComposant"/>
-    <genClasses ecoreClass="ASACadabra.ecore#//InterfaceComposant">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceComposant/servicesRequis"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceComposant/servicesFournis"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceComposant/portRequis"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceComposant/portFournis"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//PortComposantFournis"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//ServicesComposantRequis"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//InterfaceComposantRequise">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceComposantRequise/servicesRequis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceComposantRequise/portRequis"/>
     </genClasses>
-    <genClasses ecoreClass="ASACadabra.ecore#//RoleConnecteur"/>
-    <genClasses ecoreClass="ASACadabra.ecore#//LienAttachement">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienAttachement/interface"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienAttachement/role"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//RoleRequis"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//LienAttachementPFRR">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienAttachementPFRR/role"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienAttachementPFRR/portcomposantfournis"/>
     </genClasses>
-    <genClasses ecoreClass="ASACadabra.ecore#//LienBinding">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienBinding/port"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienBinding/portconfiguration"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//LienBindingPRSR">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienBindingPRSR/portconfigurationRequis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienBindingPRSR/servicescomposantrequis"/>
     </genClasses>
-    <genClasses ecoreClass="ASACadabra.ecore#//PortConfiguration"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//PortConfigurationRequis"/>
     <genClasses ecoreClass="ASACadabra.ecore#//InterfaceConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceConfiguration/portconfiguration"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceConfiguration/portconfigurationRequis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceConfiguration/portconfigurationfournis"/>
+    </genClasses>
+    <genClasses ecoreClass="ASACadabra.ecore#//RoleFournis"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//PortComposantRequis"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//ServicesComposantFournis"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//LienAttachementPRRF">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienAttachementPRRF/portcomposantrequis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienAttachementPRRF/rolefournis"/>
+    </genClasses>
+    <genClasses ecoreClass="ASACadabra.ecore#//InterfaceComposantFournie">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceComposantFournie/servicesFournis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//InterfaceComposantFournie/portFournis"/>
+    </genClasses>
+    <genClasses ecoreClass="ASACadabra.ecore#//PortConfigurationFournis"/>
+    <genClasses ecoreClass="ASACadabra.ecore#//LienBindingPFSF">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienBindingPFSF/portconfigurationfournis"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//LienBindingPFSF/servicescomposantfournis"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
