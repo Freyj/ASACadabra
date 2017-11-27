@@ -13,6 +13,7 @@
     <genClasses ecoreClass="ASACadabra.ecore#//Composant">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//Composant/interfaceFournie"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//Composant/interfaceRequise"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//Composant/composant"/>
     </genClasses>
     <genClasses ecoreClass="ASACadabra.ecore#//Connecteur">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference ASACadabra.ecore#//Connecteur/roleFournis"/>
