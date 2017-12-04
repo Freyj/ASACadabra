@@ -11,7 +11,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Connecteur">
     <eOperations name="Glue">
-      <eParameters name="roleFournis" eType="#//RoleRequis"/>
+      <eParameters name="roleFournis" eType="#//RoleFournis"/>
       <eParameters name="roleRequis" eType="#//RoleRequis"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="roleFournis" lowerBound="1"
