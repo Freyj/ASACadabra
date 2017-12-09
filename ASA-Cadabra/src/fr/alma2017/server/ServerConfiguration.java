@@ -3,6 +3,8 @@ package fr.alma2017.server;
 import java.util.ArrayList;
 import java.util.List;
 
+import fr.alma2017.api.IObservable;
+import fr.alma2017.api.IObserver;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.composant.IInterfaceComposantFournie;
 import fr.alma2017.api.composant.IInterfaceComposantRequise;
@@ -33,6 +35,11 @@ public class ServerConfiguration implements IConfiguration, IServerConfiguration
 		this.composantsInternes.add(securityManager);
 		this.composantsInternes.add(connectionManager);
 		this.composantsInternes.add(baseDonnees);
+		for(IComposant composant : this.composantsInternes) {
+			if(composant instanceof IObservable) {
+				this.interfaceConfiguration.createBinding(this, (IObserver)composant);
+			}
+		}
 		this.connecteurs = new ArrayList<IConnecteur>();
 	}
 
@@ -49,6 +56,11 @@ public class ServerConfiguration implements IConfiguration, IServerConfiguration
 	@Override
 	public List<IComposant> getComposantsInternes() {
 		return this.composantsInternes;
+	}
+
+	@Override
+	public void notify(Object source) {
+		
 	}
 	
 }

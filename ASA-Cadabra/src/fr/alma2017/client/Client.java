@@ -3,12 +3,13 @@ package fr.alma2017.client;
 import java.util.List;
 
 import fr.alma2017.api.IObservable;
+import fr.alma2017.api.IObserver;
 import fr.alma2017.api.client.IClient;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.composant.IInterfaceComposantFournie;
 import fr.alma2017.api.composant.IInterfaceComposantRequise;
 
-public class Client implements IComposant, IClient, IObservable {
+public class Client implements IComposant, IClient {
 	
 	private String message;
 
@@ -33,12 +34,6 @@ public class Client implements IComposant, IClient, IObservable {
 	public List<IComposant> getComposantsInternes() {
 		// TODO Auto-generated method stub
 		return null;
-	}
-	
-	@Override
-	public void setObserver(IObservable observer) {
-		// TODO Auto-generated method stub
-		
 	}
 	
 	public void setMessage(String mes) {

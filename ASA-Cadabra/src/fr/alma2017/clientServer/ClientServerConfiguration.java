@@ -58,6 +58,11 @@ public class ClientServerConfiguration implements IConfiguration, IClientServerI
 	public List<IComposant> getComposantsInternes() {
 		return this.composantsInternes;
 	}
+
+	@Override
+	public void notify(Object source) {
+		
+	}
 	
 	
 
