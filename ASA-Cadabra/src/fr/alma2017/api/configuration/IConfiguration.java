@@ -8,6 +8,6 @@ import fr.alma2017.api.connecteur.IConnecteur;
 public interface IConfiguration {
 	public IInterfaceConfiguration getInterface();
 	public List<IConnecteur> getConnecteurs();
-	public List<IComposant> getInnerComposants();
+	public List<IComposant> getComposantsInternes();
 
 }
