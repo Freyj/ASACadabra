@@ -3,3 +3,4 @@
 .metadata
 ASA-Cadabra/META-INF/MANIFEST.MF
 *.class
+.settings/
