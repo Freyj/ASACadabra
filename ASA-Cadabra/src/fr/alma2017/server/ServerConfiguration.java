@@ -48,7 +48,7 @@ public class ServerConfiguration implements IConfiguration, IServerConfiguration
 	}
 
 	@Override
-	public List<IComposant> getInnerComposants() {
+	public List<IComposant> getComposantsInternes() {
 		return this.innerComposants;
 	}
 
