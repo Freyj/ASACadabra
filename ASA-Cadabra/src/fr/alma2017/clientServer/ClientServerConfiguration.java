@@ -12,16 +12,13 @@ import fr.alma2017.api.configuration.IInterfaceConfiguration;
 import fr.alma2017.api.connecteur.IConnecteur;
 import fr.alma2017.api.server.IServer;
 import fr.alma2017.client.Client;
+import fr.alma2017.configurationClass.AConfiguration;
 import fr.alma2017.configurationClass.InterfaceConfiguration;
 import fr.alma2017.exception.NotProxiedClassException;
 import fr.alma2017.proxy.Proxifieur;
 import fr.alma2017.server.Server;
 
-public class ClientServerConfiguration implements IConfiguration, IClientServerConfiguration {
-
-	private IInterfaceConfiguration interfaceConfiguration;
-	private List<IComposant> composantsInternes;
-	private List<IConnecteur> connecteurs;
+public class ClientServerConfiguration extends AConfiguration implements IConfiguration, IClientServerConfiguration {
 
 	public ClientServerConfiguration(IInterfaceConfiguration interfaceConfiguration, List<IComposant> innerComposants,
 			List<IConnecteur> connecteurs) {
@@ -39,7 +36,7 @@ public class ClientServerConfiguration implements IConfiguration, IClientServerC
 		//instanciation du serveur
 		IServer server = (IServer) Proxifieur.getProxyFor(Server.getServer(), IServer.class);
 		composantsInternes.add(server);
-		//passage du serveur à la config serveur
+		//passage du serveur ï¿½ la config serveur
 		
 		//instanciation du client
 		IClient client = (IClient) Proxifieur.getProxyFor(new Client(), IClient.class);
@@ -48,7 +45,7 @@ public class ClientServerConfiguration implements IConfiguration, IClientServerC
 		for(IComposant composant : this.composantsInternes) {
 			System.out.println("CSC bind : " + composant.getClass().getName());
 			if(composant instanceof IObservable) {
-				System.out.println("\tIs IObservable" + composant.getClass().getName());
+				System.out.println("\tIs IObservable " + composant.getClass().getName());
 				this.interfaceConfiguration.createBinding(this, (IObservable)composant);
 			}
 		}
