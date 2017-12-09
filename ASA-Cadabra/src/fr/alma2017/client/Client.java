@@ -26,5 +26,13 @@ public class Client implements IComposant {
 		return null;
 	}
 	
+	public Client() {
+		
+	}
+	
+	public void sendMessage(String message) {
+		
+	}
+	
 
 }
