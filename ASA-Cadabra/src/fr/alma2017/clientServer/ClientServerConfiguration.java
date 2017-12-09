@@ -8,6 +8,8 @@ import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.configuration.IConfiguration;
 import fr.alma2017.api.configuration.IInterfaceConfiguration;
 import fr.alma2017.api.connecteur.IConnecteur;
+import fr.alma2017.client.Client;
+import fr.alma2017.server.Server;
 
 public class ClientServerConfiguration implements IConfiguration, IClientServerIConfiguration {
 
@@ -21,12 +23,23 @@ public class ClientServerConfiguration implements IConfiguration, IClientServerI
 		this.composantsInternes = innerComposants;
 		this.connecteurs = connecteurs;
 	}
-
+	
 	public ClientServerConfiguration() {
-		//TODO: change
+		
 		interfaceConfiguration = null;
 		composantsInternes = new ArrayList<IComposant>();
 		connecteurs = new ArrayList<IConnecteur>();
+		
+		//instanciation du serveur
+		Server serv = new Server();
+		composantsInternes.add(serv);
+		//instanciation du client
+		Client client = new Client();
+		composantsInternes.add(client);
+		
+		//instanciation des connecteurs
+		//TODO
+		
 	}
 
 	@Override
@@ -43,5 +56,7 @@ public class ClientServerConfiguration implements IConfiguration, IClientServerI
 	public List<IComposant> getComposantsInternes() {
 		return this.composantsInternes;
 	}
+	
+	
 
 }
