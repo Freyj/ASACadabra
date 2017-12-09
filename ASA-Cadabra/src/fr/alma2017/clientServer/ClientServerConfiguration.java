@@ -34,7 +34,7 @@ public class ClientServerConfiguration implements IConfiguration, IClientServerI
 		Server serv = new Server();
 		composantsInternes.add(serv);
 		//instanciation du client
-		Client client = new Client();
+		Client client = new Client("bouh");
 		composantsInternes.add(client);
 		
 		//instanciation des connecteurs
