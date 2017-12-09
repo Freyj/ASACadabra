@@ -1,5 +1,7 @@
 package fr.alma2017.clientServer;
 
-public class ClientServerConfiguration {
+import fr.alma2017.api.IConfiguration;
+
+public class ClientServerConfiguration implements IConfiguration {
 
 }

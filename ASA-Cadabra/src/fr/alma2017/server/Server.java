@@ -1,5 +1,7 @@
 package fr.alma2017.server;
 
-public class Server {
+import fr.alma2017.api.IComposant;
 
+public class Server implements IComposant {
+	
 }
