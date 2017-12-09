@@ -15,8 +15,7 @@ public class ClientConfiguration extends AConfiguration implements IConfiguratio
 				System.out.println("\t Is IObservable" + composant.getClass().getName());
 				this.getInterface().createBinding(this, (IObservable)composant);
 			}
-		}
-		
+		}		
 	}
 
 	@Override

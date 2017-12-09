@@ -20,8 +20,8 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 	
 
 	public ServerConfiguration(IServer serverFromCSConfiguration) throws NotProxiedClassException {
-		this.setInterface(new InterfaceConfiguration());
-		this.setComposantsInternes(new ArrayList<IComposant>());
+		this.interfaceConfiguration = new InterfaceConfiguration();
+		this.composantsInternes = new ArrayList<IComposant>();
 		ISecurityManager securityManager = (ISecurityManager) Proxifieur.getProxyFor(new SecurityManager(), ISecurityManager.class);
 		IConnectionManager connectionManager = (IConnectionManager) Proxifieur.getProxyFor(new ConnectionManager(), IConnectionManager.class);
 		IBaseDonnees baseDonnees = (IBaseDonnees) Proxifieur.getProxyFor(new BaseDonnees(), IBaseDonnees.class);
@@ -33,11 +33,11 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 		for(IComposant composant : this.getComposantsInternes()) {
 			System.out.println("SC bind : " + composant.getClass().getName());
 			if(composant instanceof IObservable) {
-				System.out.println("\t Is IObservable" + composant.getClass().getName());
+				System.out.println("\tIs IObservable " + composant.getClass().getName());
 				this.getInterface().createBinding(this, (IObservable)composant);
 			}
 		}
-		this.setConnecteurs(new ArrayList<IConnecteur>());
+		this.connecteurs = new ArrayList<IConnecteur>();
 	}
 
 	@Override

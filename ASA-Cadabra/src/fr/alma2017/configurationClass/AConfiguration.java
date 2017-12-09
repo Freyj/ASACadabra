@@ -27,19 +27,4 @@ public abstract class AConfiguration implements IConfiguration{
 	public List<IComposant> getComposantsInternes() {
 		return this.composantsInternes;
 	}
-	
-	@Override
-	public void setInterface(IInterfaceConfiguration interfaceConfig) {
-		this.interfaceConfiguration = interfaceConfig;
-	}
-	
-	@Override
-	public void setConnecteurs(List<IConnecteur> connect) {
-		this.connecteurs = connect;
-	}
-	
-	@Override
-	public void setComposantsInternes(List<IComposant> compos) {
-		this.composantsInternes = compos;
-	}
 }
