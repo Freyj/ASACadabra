@@ -19,21 +19,20 @@ import fr.alma2017.configurationClass.InterfaceConfiguration;
 public class ServerConfiguration implements IConfiguration, IServerConfiguration {
 	
 	private IInterfaceConfiguration interfaceConfiguration;
-	private List<IComposant> innerComposants;
+	private List<IComposant> composantsInternes;
 	private List<IConnecteur> connecteurs;
 
-	public ServerConfiguration(List<IConnecteur> connecteurs) {
+	public ServerConfiguration(List<IConnecteur> connecteurs, IServer server) {
 		super();
 		this.interfaceConfiguration = new InterfaceConfiguration();
-		this.innerComposants = new ArrayList<IComposant>();
-		IServer server = new Server();
+		this.composantsInternes = new ArrayList<IComposant>();
 		ISecurityManager securityManager = new SecurityManager();
 		IConnectionManager connectionManager = new ConnectionManager();
 		IBaseDonnees baseDonnees = new BaseDonnees();
-		this.innerComposants.add(server);
-		this.innerComposants.add(securityManager);
-		this.innerComposants.add(connectionManager);
-		this.innerComposants.add(baseDonnees);
+		this.composantsInternes.add(server);
+		this.composantsInternes.add(securityManager);
+		this.composantsInternes.add(connectionManager);
+		this.composantsInternes.add(baseDonnees);
 		this.connecteurs = new ArrayList<IConnecteur>();
 	}
 
@@ -49,7 +48,7 @@ public class ServerConfiguration implements IConfiguration, IServerConfiguration
 
 	@Override
 	public List<IComposant> getComposantsInternes() {
-		return this.innerComposants;
+		return this.composantsInternes;
 	}
-
+	
 }
