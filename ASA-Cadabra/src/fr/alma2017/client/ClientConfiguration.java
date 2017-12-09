@@ -8,10 +8,7 @@ import fr.alma2017.configurationClass.AConfiguration;
 public class ClientConfiguration extends AConfiguration implements IConfiguration{
 	
 	
-	
 	public ClientConfiguration() {
-		
-
 		for(IComposant composant : this.getComposantsInternes()) {
 			System.out.println("CSC bind : " + composant.getClass().getName());
 			if(composant instanceof IObservable) {
@@ -27,6 +24,5 @@ public class ClientConfiguration extends AConfiguration implements IConfiguratio
 		// TODO Auto-generated method stub
 		
 	}
-
 
 }
