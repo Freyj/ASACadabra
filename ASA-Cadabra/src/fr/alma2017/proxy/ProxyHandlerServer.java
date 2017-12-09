@@ -2,18 +2,20 @@ package fr.alma2017.proxy;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
 
 import fr.alma2017.api.IObservable;
+import fr.alma2017.api.IObserver;
 
 public class ProxyHandlerServer implements InvocationHandler {
 	
 	private Object target;
-	private List<IObservable> observer;
+	private List<IObserver> observer;
 
 	public ProxyHandlerServer(Object target) {
 		this.target = target;
-		this.observer = null;
+		this.observer = new ArrayList<IObserver>();
 	}
 
 	@Override
@@ -25,7 +27,7 @@ public class ProxyHandlerServer implements InvocationHandler {
 
 			//Fonctionne correctement
 			ret = Void.TYPE;
-			this.observer.add( (IObservable) args[0] );
+			this.observer.add( (IObserver) args[0] );
 		}else if(method.getName().substring(0, 3).equals("set") && this.observer != null){
 			ret = method.invoke(this.target, args);
 			//this.observer.notify(this.target);
