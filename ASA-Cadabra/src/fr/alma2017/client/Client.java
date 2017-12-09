@@ -2,11 +2,20 @@ package fr.alma2017.client;
 
 import java.util.List;
 
+import fr.alma2017.api.IObservable;
+import fr.alma2017.api.client.IClient;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.composant.IInterfaceComposantFournie;
 import fr.alma2017.api.composant.IInterfaceComposantRequise;
 
-public class Client implements IComposant {
+public class Client implements IComposant, IClient, IObservable {
+	
+	private String message;
+
+	
+	public Client() {
+		message = "No message";
+	}
 
 	@Override
 	public IInterfaceComposantFournie getInterfaceFournie() {
@@ -21,18 +30,28 @@ public class Client implements IComposant {
 	}
 
 	@Override
-	public List<IComposant> getInnerComposants() {
+	public List<IComposant> getComposantsInternes() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
-	public Client() {
+	@Override
+	public void setObserver(IObservable observer) {
+		// TODO Auto-generated method stub
 		
 	}
 	
-	public void sendMessage(String message) {
-		
+	public void setMessage(String mes) {
+		message = mes;
 	}
 	
+	public String getMessage() {
+		return message;
+	}
+	
+	public void sendMessage() {
+		//this.getInterfaceRequise().sendRequest(message);
+	}
+
 
 }

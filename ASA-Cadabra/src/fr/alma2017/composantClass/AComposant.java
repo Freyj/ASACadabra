@@ -11,13 +11,13 @@ public class AComposant implements IComposant {
 
 	protected IInterfaceComposantRequise interfaceRequise;
 	protected IInterfaceComposantFournie interfaceFournie;
-	protected List<IComposant> innerComposants;
+	protected List<IComposant> composantsInternes;
 
 	public AComposant() {
 		super();
 		this.interfaceRequise = new InterfaceComposantRequise();
 		this.interfaceFournie = new InterfaceComposantFournie();
-		this.innerComposants = new ArrayList<IComposant>();
+		this.composantsInternes = new ArrayList<IComposant>();
 	}
 
 	@Override
@@ -31,8 +31,8 @@ public class AComposant implements IComposant {
 	}
 
 	@Override
-	public List<IComposant> getInnerComposants() {
-		return this.innerComposants;
+	public List<IComposant> getComposantsInternes() {
+		return this.composantsInternes;
 	}
 
 }

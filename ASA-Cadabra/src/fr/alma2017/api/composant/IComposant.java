@@ -5,6 +5,6 @@ import java.util.List;
 public interface IComposant {
 	public IInterfaceComposantFournie getInterfaceFournie();
 	public IInterfaceComposantRequise getInterfaceRequise();
-	public List<IComposant> getInnerComposants();
+	public List<IComposant> getComposantsInternes();
 	
 }
