@@ -6,14 +6,13 @@ import java.util.List;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.composant.IInterfaceComposantFournie;
 import fr.alma2017.api.composant.IInterfaceComposantRequise;
-import fr.alma2017.api.server.IServer;
+import fr.alma2017.api.server.ISecurityManager;
 import fr.alma2017.composantClass.AComposant;
 
-public class Server extends AComposant implements IComposant, IServer {
+public class SecurityManager extends AComposant implements IComposant, ISecurityManager {
 
-	public Server() {
+	public SecurityManager() {
 		super();
 	}
 
-	
 }

@@ -16,6 +16,8 @@
         eType="#//SecurityManager" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="basedonnees" upperBound="-1"
         eType="#//BaseDonnees" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="server" lowerBound="1"
+        upperBound="-1" eType="#//Server" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Server" eSuperTypes="ASACadabra.ecore#//Composant">
     <eStructuralFeatures xsi:type="ecore:EReference" name="servericf" upperBound="-1"
