@@ -7,6 +7,8 @@ import fr.alma2017.api.composant.IInterfaceComposantFournie;
 import fr.alma2017.api.composant.IInterfaceComposantRequise;
 
 public class Client implements IComposant {
+	
+	private String message;
 
 	@Override
 	public IInterfaceComposantFournie getInterfaceFournie() {
@@ -26,12 +28,12 @@ public class Client implements IComposant {
 		return null;
 	}
 	
-	public Client() {
-		
+	public Client(String message) {
+		this.message = message;		
 	}
 	
 	public void sendMessage(String message) {
-		
+		//this.getInterfaceRequise().sendRequest(message);
 	}
 	
 
