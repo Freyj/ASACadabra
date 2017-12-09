@@ -10,5 +10,7 @@ public interface IConfiguration extends IObserver {
 	public IInterfaceConfiguration getInterface();
 	public List<IConnecteur> getConnecteurs();
 	public List<IComposant> getComposantsInternes();
-
+	void setConnecteurs(List<IConnecteur> connect);
+	void setInterface(IInterfaceConfiguration interfaceConfig);
+	void setComposantsInternes(List<IComposant> compos);
 }

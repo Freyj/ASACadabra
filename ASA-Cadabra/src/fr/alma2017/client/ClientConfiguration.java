@@ -1,17 +1,24 @@
 package fr.alma2017.client;
 
-import java.util.List;
-
+import fr.alma2017.api.IObservable;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.configuration.IConfiguration;
-import fr.alma2017.api.configuration.IInterfaceConfiguration;
-import fr.alma2017.api.connecteur.IConnecteur;
+import fr.alma2017.configurationClass.AConfiguration;
 
-public class ClientConfiguration implements IConfiguration{
+public class ClientConfiguration extends AConfiguration implements IConfiguration{
 	
 	
 	
 	public ClientConfiguration() {
+		
+
+		for(IComposant composant : this.getComposantsInternes()) {
+			System.out.println("CSC bind : " + composant.getClass().getName());
+			if(composant instanceof IObservable) {
+				System.out.println("\t Is IObservable" + composant.getClass().getName());
+				this.getInterface().createBinding(this, (IObservable)composant);
+			}
+		}
 		
 	}
 
@@ -21,22 +28,5 @@ public class ClientConfiguration implements IConfiguration{
 		
 	}
 
-	@Override
-	public IInterfaceConfiguration getInterface() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<IConnecteur> getConnecteurs() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<IComposant> getComposantsInternes() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 }

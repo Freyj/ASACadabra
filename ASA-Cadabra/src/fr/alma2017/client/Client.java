@@ -2,9 +2,11 @@ package fr.alma2017.client;
 
 import java.util.ArrayList;
 
+import fr.alma2017.api.IObservable;
 import fr.alma2017.api.client.IClient;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.composantClass.AComposant;
+import fr.alma2017.proxy.Proxifieur;
 
 public class Client extends AComposant implements IComposant, IClient {
 	
