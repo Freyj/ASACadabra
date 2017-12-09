@@ -26,11 +26,11 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 		IConnectionManager connectionManager = (IConnectionManager) Proxifieur.getProxyFor(new ConnectionManager(), IConnectionManager.class);
 		IBaseDonnees baseDonnees = (IBaseDonnees) Proxifieur.getProxyFor(new BaseDonnees(), IBaseDonnees.class);
 		IServer server = (IServer) Proxifieur.getProxyFor(serverFromCSConfiguration, IServer.class);
-		this.getComposantsInternes().add(server);
-		this.getComposantsInternes().add(securityManager);
-		this.getComposantsInternes().add(connectionManager);
-		this.getComposantsInternes().add(baseDonnees);
-		for(IComposant composant : this.getComposantsInternes()) {
+		this.composantsInternes.add(server);
+		this.composantsInternes.add(securityManager);
+		this.composantsInternes.add(connectionManager);
+		this.composantsInternes.add(baseDonnees);
+		for(IComposant composant : this.composantsInternes) {
 			System.out.println("SC bind : " + composant.getClass().getName());
 			if(composant instanceof IObservable) {
 				System.out.println("\tIs IObservable " + composant.getClass().getName());
