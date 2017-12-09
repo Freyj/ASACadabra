@@ -1,6 +1,7 @@
 package fr.alma2017.clientServer;
 
 import fr.alma2017.api.IObservable;
+import fr.alma2017.api.client.IClient;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.client.Client;
 import fr.alma2017.exception.NotProxiedClassException;
@@ -22,8 +23,8 @@ public class Main {
 		
 		//test (remember extensible)
 		try {
-			IComposant pers = (IComposant) Proxifieur.getProxyFor(new Client(), Client.class);
-			((Client) pers).sendMessage();
+			IComposant pers = (IComposant) Proxifieur.getProxyFor(new Client(), IClient.class);
+			((IClient) pers).sendMessage();
 			IObservable observer = new IObservable(){
 				public void notify(Object source){
 					System.out.println(source + " is modified");
@@ -37,7 +38,7 @@ public class Main {
 			};
 			
 			((IObservable) pers).setObserver(observer);
-			((Client) pers).setMessage("Piou");
+			((IClient) pers).setMessage("Piou");
 		} catch (NotProxiedClassException e) {
 			e.printStackTrace();
 		}
