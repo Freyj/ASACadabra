@@ -6,8 +6,6 @@ import java.util.List;
 import fr.alma2017.api.IObservable;
 import fr.alma2017.api.IObserver;
 import fr.alma2017.api.composant.IComposant;
-import fr.alma2017.api.composant.IInterfaceComposantFournie;
-import fr.alma2017.api.composant.IInterfaceComposantRequise;
 import fr.alma2017.api.configuration.IConfiguration;
 import fr.alma2017.api.configuration.IInterfaceConfiguration;
 import fr.alma2017.api.connecteur.IConnecteur;
