@@ -3,11 +3,12 @@ package fr.alma2017.client;
 import java.util.List;
 
 import fr.alma2017.api.IObservable;
+import fr.alma2017.api.client.IClient;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.composant.IInterfaceComposantFournie;
 import fr.alma2017.api.composant.IInterfaceComposantRequise;
 
-public class Client implements IComposant, IObservable {
+public class Client implements IComposant, IClient, IObservable {
 	
 	private String message;
 

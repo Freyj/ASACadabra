@@ -3,11 +3,12 @@ package fr.alma2017.proxy;
 import java.lang.reflect.Proxy;
 
 import fr.alma2017.api.IObservable;
-import fr.alma2017.client.Client;
+import fr.alma2017.api.client.IClient;
+import fr.alma2017.api.server.IBaseDonnees;
+import fr.alma2017.api.server.IConnectionManager;
+import fr.alma2017.api.server.ISecurityManager;
+import fr.alma2017.api.server.IServer;
 import fr.alma2017.exception.NotProxiedClassException;
-import fr.alma2017.server.BaseDonnees;
-import fr.alma2017.server.ConnectionManager;
-import fr.alma2017.server.Server;
 
 public class Proxifieur {
 
@@ -25,27 +26,27 @@ public class Proxifieur {
 	}
 
 	public static Object getProxyFor(Object target, Class<?> classType) throws NotProxiedClassException{
-		if (classType.equals(Client.class)) {
+		if (classType.equals(IClient.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
 					new ProxyHandlerClient(target));			
 		}
-		else if (classType.equals(Server.class)) {
+		else if (classType.equals(IServer.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
 					new ProxyHandlerServer(target));
 		}
-		else if (classType.equals(BaseDonnees.class)) {
+		else if (classType.equals(IBaseDonnees.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
 					new ProxyHandlerBDD(target));
 		}
-		else if (classType.equals(ConnectionManager.class)) {
+		else if (classType.equals(IConnectionManager.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
 					new ProxyHandlerConnectionManager(target));
 		}
-		else if (classType.equals(SecurityManager.class)) {
+		else if (classType.equals(ISecurityManager.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
 					new ProxyHandlerSecurityManager(target));
