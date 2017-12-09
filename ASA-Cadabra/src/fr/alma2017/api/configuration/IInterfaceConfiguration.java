@@ -1,9 +1,9 @@
 package fr.alma2017.api.configuration;
 
-import fr.alma2017.api.IObserver;
+import fr.alma2017.api.IObservable;
 
 public interface IInterfaceConfiguration {
 
-	public void createBinding(IConfiguration configuration, IObserver composant);
+	public void createBinding(IConfiguration configuration, IObservable composant);
 
 }

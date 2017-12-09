@@ -3,15 +3,21 @@ package fr.alma2017.clientServer;
 import java.util.ArrayList;
 import java.util.List;
 
-import fr.alma2017.api.clientServer.IClientServerIConfiguration;
+import fr.alma2017.api.IObservable;
+import fr.alma2017.api.client.IClient;
+import fr.alma2017.api.clientServer.IClientServerConfiguration;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.configuration.IConfiguration;
 import fr.alma2017.api.configuration.IInterfaceConfiguration;
 import fr.alma2017.api.connecteur.IConnecteur;
+import fr.alma2017.api.server.IServer;
 import fr.alma2017.client.Client;
+import fr.alma2017.configurationClass.InterfaceConfiguration;
+import fr.alma2017.exception.NotProxiedClassException;
+import fr.alma2017.proxy.Proxifieur;
 import fr.alma2017.server.Server;
 
-public class ClientServerConfiguration implements IConfiguration, IClientServerIConfiguration {
+public class ClientServerConfiguration implements IConfiguration, IClientServerConfiguration {
 
 	private IInterfaceConfiguration interfaceConfiguration;
 	private List<IComposant> composantsInternes;
@@ -24,20 +30,28 @@ public class ClientServerConfiguration implements IConfiguration, IClientServerI
 		this.connecteurs = connecteurs;
 	}
 	
-	public ClientServerConfiguration() {
+	public ClientServerConfiguration() throws NotProxiedClassException {
 		
-		interfaceConfiguration = null;
+		interfaceConfiguration = new InterfaceConfiguration();
 		composantsInternes = new ArrayList<IComposant>();
 		connecteurs = new ArrayList<IConnecteur>();
 		
 		//instanciation du serveur
-		Server serv = new Server();
-		composantsInternes.add(serv);
+		IServer server = (IServer) Proxifieur.getProxyFor(Server.getServer(), IServer.class);
+		composantsInternes.add(server);
 		//passage du serveur à la config serveur
 		
 		//instanciation du client
-		Client client = new Client();
+		IClient client = (IClient) Proxifieur.getProxyFor(new Client(), IClient.class);
 		composantsInternes.add(client);
+
+		for(IComposant composant : this.composantsInternes) {
+			System.out.println("CSC bind : " + composant.getClass().getName());
+			if(composant instanceof IObservable) {
+				System.out.println("\tIs IObservable" + composant.getClass().getName());
+				this.interfaceConfiguration.createBinding(this, (IObservable)composant);
+			}
+		}
 		
 		//instanciation des connecteurs
 		//TODO
@@ -63,7 +77,10 @@ public class ClientServerConfiguration implements IConfiguration, IClientServerI
 	public void notify(Object source) {
 		
 	}
-	
-	
+
+	@Override
+	public IServer getServer() {
+		return Server.getServer();
+	}
 
 }

@@ -1,6 +1,8 @@
 package fr.alma2017.api.client;
 
-public interface IClient {
+import fr.alma2017.api.composant.IComposant;
+
+public interface IClient extends IComposant {
 
 	void sendMessage();
 

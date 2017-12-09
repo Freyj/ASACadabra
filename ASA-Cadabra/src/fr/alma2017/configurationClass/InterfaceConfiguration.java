@@ -8,8 +8,8 @@ import fr.alma2017.api.configuration.IInterfaceConfiguration;
 public class InterfaceConfiguration implements IInterfaceConfiguration {
 
 	@Override
-	public void createBinding(IConfiguration configuration, IObserver composant) {
-		((IObservable) configuration).setObserver(composant);		
+	public void createBinding(IConfiguration configuration, IObservable composant) {
+		((IObservable) composant).addObserver(configuration);
 	}
 
 }

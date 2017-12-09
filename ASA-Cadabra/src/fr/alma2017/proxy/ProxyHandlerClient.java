@@ -20,9 +20,8 @@ public class ProxyHandlerClient implements InvocationHandler {
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Object ret;
-		System.out.println(" is modified");
 
-		if(method.getName().equals("setObserver")){
+		if(method.getName().equals("addObserver")){
 			//Ne fonctionne pas : java.lang.IllegalArgumentException: object is not an instance of declaring class
 			//ret = method.invoke(this.target, args);
 
@@ -33,6 +32,11 @@ public class ProxyHandlerClient implements InvocationHandler {
 			ret = method.invoke(this.target, args);
 			//this.observer.notify(this.target);
 			System.out.println(target.getClass().getName() + " ["+ method.getName().substring(3) + "=" + args[0] + "] is modified");
+		}else if(method.getName().equals("sendMessage") && this.observer != null){
+			ret = method.invoke(this.target, args);
+			for(IObserver observer : this.observer) {
+				observer.notify(target);
+			}
 		}else{
 			System.out.println(" call " + method.getName());
 			ret = method.invoke(this.target, args);
