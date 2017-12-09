@@ -1,9 +1,9 @@
 package fr.alma2017.clientServer;
 
-import java.lang.reflect.Proxy;
-
 import fr.alma2017.api.IObservable;
-import fr.alma2017.proxy.ProxyHandler;
+import fr.alma2017.api.composant.IComposant;
+import fr.alma2017.client.Client;
+import fr.alma2017.proxy.Proxifieur;
 
 /**
  * Lancement d'application
@@ -14,30 +14,29 @@ public class Main {
 	
 	private static ClientServerConfiguration clientServeurConfig;
 	
-	
-	private static Class<?>[] concat(Class<?>[] interfaces, Class<?> class1) {
-		Class<?>[] res;
-		res = new Class<?>[interfaces.length + 1];
-		for(int i = 0; i < res.length; ++i){
-			if(i < interfaces.length){
-				res[i] = interfaces[i];
-			}else{
-				res[i] = class1;
-			}
-		}
-		return res;
-	}
-	
 
-
-	private static Object getProxyFor(Object target) {
-		return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
-				concat(target.getClass().getInterfaces(), IObservable.class),
-				new ProxyHandler(target));
-	}
 	
 	public static void main(String[] args) {
 		clientServeurConfig = new ClientServerConfiguration();
+		
+		//test (remember extensible)
+		IComposant pers = (IComposant) Proxifieur.getProxyFor(new Client(), Client.class);
+		((Client) pers).sendMessage();
+		IObservable observer = new IObservable(){
+			public void notify(Object source){
+				System.out.println(source + " is modified");
+			}
+
+			@Override
+			public void setObserver(IObservable observer) {
+				// TODO Auto-generated method stub
+				
+			}
+		};
+		
+		((IObservable) pers).setObserver(observer);
+		((Client) pers).setMessage("Piou");
+		
 		
 	}
 

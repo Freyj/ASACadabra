@@ -5,12 +5,14 @@ import java.lang.reflect.Method;
 
 import fr.alma2017.api.IObservable;
 
-public class ProxyHandler implements InvocationHandler {
+
+public class ProxyHandlerConnectionManager implements InvocationHandler{
+
 
 	private Object target;
 	private IObservable observer;
 
-	public ProxyHandler(Object target) {
+	public ProxyHandlerConnectionManager(Object target) {
 		this.target = target;
 		this.observer = null;
 	}
@@ -20,7 +22,6 @@ public class ProxyHandler implements InvocationHandler {
 		Object ret;
 		if(method.getName().equals("setObserver")){
 			//Ne fonctionne pas : java.lang.IllegalArgumentException: object is not an instance of declaring class
-			//Parce que Personne et IPersonne n'ont pas de setObserver 
 			//ret = method.invoke(this.target, args);
 
 			//Fonctionne correctement
