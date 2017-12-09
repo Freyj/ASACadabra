@@ -1,5 +1,7 @@
 package fr.alma2017.client;
 
-public class Client {
+import fr.alma2017.api.composant.IComposant;
+
+public class Client implements IComposant {
 
 }
