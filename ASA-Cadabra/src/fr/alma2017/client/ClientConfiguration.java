@@ -8,6 +8,12 @@ import fr.alma2017.api.configuration.IInterfaceConfiguration;
 import fr.alma2017.api.connecteur.IConnecteur;
 
 public class ClientConfiguration implements IConfiguration{
+	
+	
+	
+	public ClientConfiguration() {
+		
+	}
 
 	@Override
 	public void notify(Object source) {
