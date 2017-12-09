@@ -26,12 +26,5 @@ public class Client implements IComposant {
 		return null;
 	}
 	
-	/**
-	 * Le clien est un main à part entière
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		
-	}
 
 }
