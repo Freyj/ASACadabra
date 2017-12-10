@@ -7,7 +7,7 @@ import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.composant.IInterfaceComposantFournie;
 import fr.alma2017.api.composant.IInterfaceComposantRequise;
 
-public class AComposant implements IComposant {
+public abstract class AComposant implements IComposant {
 
 	protected IInterfaceComposantRequise interfaceRequise;
 	protected IInterfaceComposantFournie interfaceFournie;

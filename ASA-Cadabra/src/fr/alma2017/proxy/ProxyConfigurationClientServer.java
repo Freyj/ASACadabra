@@ -28,12 +28,23 @@ public class ProxyConfigurationClientServer implements InvocationHandler {
 			ret = this.getObserver();
 		}else if(method.getName().substring(0, 3).equals("set") && this.observer != null){
 			ret = method.invoke(this.target, args);
-			//this.observer.notify(this.target);
 			if(Main.Sysout) {
 				System.out.println(target.getClass().getName() + " ["+ method.getName().substring(3) + "=" + args[0] + "] is modified");
 			}
-		
+		}else if(method.getName().equals("sendMessage") && this.observer != null){
+			ret = method.invoke(this.target, args);
+			if(Main.Sysout) {
+				System.out.println("Proxy configurationClientServer : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
+			}
+			for(IObserver observer : this.observer) {
+				if(args[1] instanceof List<?>) {
+					observer.notify( args );
+				}
+			}
 		}else{
+			if(Main.Sysout) {
+				System.out.println("\tProxy configurationClientServer :  call " + method.getName());
+			}
 			ret = method.invoke(this.target, args);
 		}
 		return ret;

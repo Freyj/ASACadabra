@@ -2,7 +2,6 @@ package fr.alma2017.server;
 
 import java.util.ArrayList;
 import java.util.List;
-import fr.alma2017.api.IObservable;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.configuration.IConfiguration;
 import fr.alma2017.api.connecteur.IConnecteur;
@@ -36,39 +35,32 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 		this.interfaceConfiguration = new InterfaceConfiguration(portRequis, portFournis);
 		
 		this.composantsInternes = new ArrayList<IComposant>();
-		IServer server = (IServer) Proxifieur.getProxyFor(serverFromCSConfiguration, IServer.class);
 		ISecurityManager securityManager = (ISecurityManager) Proxifieur.getProxyFor(new SecurityManager(), ISecurityManager.class);
 		IConnectionManager connectionManager = (IConnectionManager) Proxifieur.getProxyFor(new ConnectionManager(), IConnectionManager.class);
 		IBaseDonnees baseDonnees = (IBaseDonnees) Proxifieur.getProxyFor(new BaseDonnees(), IBaseDonnees.class);
 		
-		this.composantsInternes.add(server);
+		this.composantsInternes.add(serverFromCSConfiguration);
 		this.composantsInternes.add(securityManager);
 		this.composantsInternes.add(connectionManager);
 		this.composantsInternes.add(baseDonnees);
-		/*
-		for(IComposant composant : this.composantsInternes) {
-			if(composant instanceof IObservable) {
-				this.getInterface().createBinding(this, (IObservable)composant);
-			}
-		}*/
 		
 		this.connecteurs = new ArrayList<IConnecteur>();
 	}
 	
 	@Override
-	public void bindComposant() {
-		for(IComposant composant : this.composantsInternes) {
-			if(composant instanceof IObservable) {
-				this.interfaceConfiguration.createBinding(this, (IObservable)composant);
-			}
-		}
-	}
-	@Override
 	public void notify(Object source) {
-		if(Main.Sysout) {
+		if(source instanceof List<?>) {	
+			if(Main.Sysout) {
+				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
+			}
+			
+		}else if(Main.Sysout) {
 			System.out.println("Notification pour " + this.getClass().getName() + " : " + source.toString());
 		}
 	}
 
 	
+	
+
 }

@@ -22,14 +22,11 @@ public class ProxyClient implements InvocationHandler {
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Object ret;
-
 		if(method.getName().equals("addObserver")){
 			ret = Void.TYPE;
 			this.observer.add( (IObserver) args[0] );
 		}else if(method.getName().substring(0, 3).equals("set") && this.observer != null){
 			ret = method.invoke(this.target, args);
-			//this.observer.notify(this.target);
-
 			if(Main.Sysout) {
 				System.out.println(target.getClass().getName() + " ["+ method.getName().substring(3) + "=" + args[0] + "] is modified");
 			}
@@ -37,14 +34,14 @@ public class ProxyClient implements InvocationHandler {
 			List<String> message = ((IClient)target).makeMessage();
 			ret = method.invoke(this.target, args);
 			if(Main.Sysout) {
-				System.out.println(this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
+				System.out.println("Proxy Client : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
 			}
 			for(IObserver observer : this.observer) {
 				observer.notify( message );
 			}
 		}else{
 			if(Main.Sysout) {
-				System.out.println(" call " + method.getName());
+				System.out.println("\tProxy Client :  call " + method.getName());
 			}
 			ret = method.invoke(this.target, args);
 		}

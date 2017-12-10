@@ -5,6 +5,7 @@ import java.util.List;
 
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.server.IServer;
+import fr.alma2017.clientServer.Main;
 import fr.alma2017.composantClass.AComposant;
 import fr.alma2017.composantClass.InterfaceComposantFournie;
 
@@ -22,5 +23,20 @@ public class Server extends AComposant implements IComposant, IServer {
 			server = new Server();
 		}
 		return server;
+	}
+	
+	@Override
+	public void notify(Object source) {
+		if(source instanceof List<?>) {	
+			if(Main.Sysout) {
+				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
+			}
+		}
+	}
+
+	@Override
+	public void sendMessage(List<?> source) {
+		
 	}
 }

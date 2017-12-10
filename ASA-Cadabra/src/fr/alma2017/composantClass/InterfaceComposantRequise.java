@@ -1,13 +1,10 @@
 package fr.alma2017.composantClass;
 
 import java.util.List;
-import java.util.Set;
-
 import fr.alma2017.api.IObservable;
 import fr.alma2017.api.IObserver;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.composant.IInterfaceComposantRequise;
-import fr.alma2017.api.configuration.IConfiguration;
 
 public class InterfaceComposantRequise implements IInterfaceComposantRequise {
 	private List<Class<?>> portRequis;

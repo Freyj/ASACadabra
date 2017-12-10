@@ -1,7 +1,5 @@
 package fr.alma2017.clientServer;
 
-import java.util.List;
-
 import fr.alma2017.api.IObservable;
 import fr.alma2017.api.client.IClient;
 import fr.alma2017.api.clientServer.IClientServerConfiguration;
@@ -28,7 +26,6 @@ public class Main {
 	}
 	
 	
-	//private static IClientServerConfiguration clientServeurConfig;
 	public static boolean Sysout = true;	
 	
 	public static void main(String[] args) throws NotProxiedClassException {
@@ -37,6 +34,7 @@ public class Main {
 				Proxifieur.getProxyFor(new ClientServerConfiguration(), IClientServerConfiguration.class);
 
 		Main.bindComposant(clientServeurConfig);
+		System.out.println();
 		IServerConfiguration serverConfiguration = (IServerConfiguration) 
 				Proxifieur.getProxyFor(new ServerConfiguration(clientServeurConfig.getServer()), IServerConfiguration.class);
 		Main.bindComposant(serverConfiguration);
@@ -55,6 +53,8 @@ public class Main {
 		};
 		((IObservable) client).addObserver(observer);
 		*/
+
+		client.makeMessage();
 		client.setMessage("Piou");
 		client.sendMessage();
 	}

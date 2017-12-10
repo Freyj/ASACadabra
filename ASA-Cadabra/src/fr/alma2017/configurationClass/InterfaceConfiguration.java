@@ -22,7 +22,7 @@ public class InterfaceConfiguration implements IInterfaceConfiguration {
 		((IObservable) composant).addObserver(configuration);
 		((IObservable) configuration).addObserver((IObserver) composant);
 		if(Main.Sysout) {
-			System.out.println(configuration.getClass().getName() + " observe " + composant.getClass().getName());
+			System.out.println(configuration.getClass().getName() + " est lié a " + composant.getClass().getName());
 		}
 	}
 

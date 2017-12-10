@@ -6,6 +6,7 @@ import java.util.HashMap;
 
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.server.IBaseDonnees;
+import fr.alma2017.clientServer.Main;
 import fr.alma2017.composantClass.AComposant;
 import fr.alma2017.composantClass.InterfaceComposantFournie;
 
@@ -54,7 +55,14 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 		}
 	}
 	
-	
-	
-	
+	@Override
+	public void notify(Object source) {
+		if(source instanceof List<?>) {	
+			if(Main.Sysout) {
+				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
+			}
+		}
+	}
+		
 }

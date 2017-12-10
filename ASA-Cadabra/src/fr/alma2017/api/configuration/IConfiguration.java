@@ -11,6 +11,5 @@ public interface IConfiguration extends IObserver {
 	public IInterfaceConfiguration getInterface();
 	public List<IConnecteur> getConnecteurs();
 	public List<IComposant> getComposantsInternes();
-	void bindComposant();
 	public void createBinding(IConfiguration configuration, IObservable composant);
 }

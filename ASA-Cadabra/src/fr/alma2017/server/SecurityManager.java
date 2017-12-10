@@ -10,4 +10,8 @@ public class SecurityManager extends AComposant implements IComposant, ISecurity
 		super();
 	}
 
+	@Override
+	public void notify(Object source) {
+		
+	}
 }
