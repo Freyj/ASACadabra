@@ -7,15 +7,14 @@ import java.util.List;
 
 import fr.alma2017.api.IObserver;
 
-public class ProxyHandlerServer implements InvocationHandler {
-	
+public class ProxyBDD implements InvocationHandler{
+
 	private Object target;
 	private List<IObserver> observer;
 
-	public ProxyHandlerServer(Object target) {
+	public ProxyBDD(Object target) {
 		this.target = target;
-		this.observer = new ArrayList<IObserver>();
-	}
+		this.observer = new ArrayList<IObserver>();	}
 
 	@Override
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {

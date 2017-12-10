@@ -1,8 +1,8 @@
 package fr.alma2017.client;
 
 import java.util.ArrayList;
+import java.util.List;
 
-import fr.alma2017.api.IObservable;
 import fr.alma2017.api.client.IClient;
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.composantClass.AComposant;
@@ -17,9 +17,9 @@ public class Client extends AComposant implements IComposant, IClient {
 	 * Constructeur vide
 	 */
 	public Client() {
-		message = "";
-		utilisateur = "";
-		motDePasse = "";
+		message = "...";
+		utilisateur = "Enrique Castelanos";
+		motDePasse = "Beep Boop";
 	}
 	
 	/**
@@ -35,39 +35,54 @@ public class Client extends AComposant implements IComposant, IClient {
 	}
 	
 	//Getters & Setters
+	@Override
 	public String getMessage() {
 		return message;
 	}	
 	
+	@Override
 	public void setMessage(String mes) {
 		message = mes;
 	}
-	
+
+	@Override
 	public void setMotDePasse(String mdp) {
 		motDePasse = mdp;
 	}
-	
+
+	@Override
 	public String getMotDePasse() {
 		return motDePasse;
 	}
-	
+
+	@Override
 	public void setNomUtilisateur(String ut) {
 		utilisateur = ut;
 	}
-	
+
+	@Override
 	public String getNomUtilisateur() {
 		return utilisateur;
 	}
 
-	/**
-	 * Méthode qui va servir à envoyer un message via les interfaces pour remonter l'archi
-	 */
-	public void sendMessage() {
-		//format de l'envoi : utilisateur + " " + motdepasse + " " + message
-		ArrayList<String> infosEnvoyees = new ArrayList<String>();
+	@Override
+	public List<String> makeMessage() {
+		List<String> infosEnvoyees = new ArrayList<String>();
 		infosEnvoyees.add(getNomUtilisateur());
 		infosEnvoyees.add(getMotDePasse());
 		infosEnvoyees.add(getMessage());
+		return infosEnvoyees;
+	}
+	/**
+	 * Méthode qui va servir à envoyer un message via les interfaces pour remonter l'archi
+	 */
+	@Override
+	public void sendMessage() {
+		//format de l'envoi : utilisateur + " " + motdepasse + " " + message
+		//ArrayList<String> infosEnvoyees = new ArrayList<String>();
+		//infosEnvoyees.add(getNomUtilisateur());
+		//infosEnvoyees.add(getMotDePasse());
+		//infosEnvoyees.add(getMessage());
 		//this.getInterfaceRequise().sendRequest(infosEnvoyees);
 		
 	}

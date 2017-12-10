@@ -20,7 +20,6 @@ public class ClientConfiguration extends AConfiguration implements IConfiguratio
 
 	@Override
 	public void notify(Object source) {
-		// TODO Auto-generated method stub
 		
 	}
 

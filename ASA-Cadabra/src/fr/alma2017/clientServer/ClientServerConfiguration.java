@@ -1,10 +1,7 @@
 package fr.alma2017.clientServer;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-
 import fr.alma2017.api.IObservable;
 import fr.alma2017.api.client.IClient;
 import fr.alma2017.api.clientServer.IClientServerConfiguration;
@@ -12,7 +9,6 @@ import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.configuration.IConfiguration;
 import fr.alma2017.api.configuration.IInterfaceConfiguration;
 import fr.alma2017.api.connecteur.IConnecteur;
-import fr.alma2017.api.server.IBaseDonnees;
 import fr.alma2017.api.server.IServer;
 import fr.alma2017.client.Client;
 import fr.alma2017.configurationClass.AConfiguration;
@@ -51,9 +47,7 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 		composantsInternes.add(client);
 
 		for(IComposant composant : this.composantsInternes) {
-			System.out.println("CSC bind : " + composant.getClass().getName());
 			if(composant instanceof IObservable) {
-				System.out.println("\tIs IObservable " + composant.getClass().getName());
 				this.interfaceConfiguration.createBinding(this, (IObservable)composant);
 			}
 		}
@@ -80,7 +74,12 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 
 	@Override
 	public void notify(Object source) {
-		
+		if(Main.Sysout) {
+			if(source instanceof List<?>) {
+				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+						((List)source).get(0) + " : " + ((List)source).get(2) );
+			}
+		}
 	}
 
 	@Override
@@ -88,4 +87,14 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 		return Server.getServer();
 	}
 
+	@Override
+	public IClient getClient() {
+		IClient res = null;
+		for(IComposant composant : this.composantsInternes) {
+			if(composant instanceof IClient) {
+				res = (IClient) composant;
+			}
+		}
+		return res;
+	}
 }

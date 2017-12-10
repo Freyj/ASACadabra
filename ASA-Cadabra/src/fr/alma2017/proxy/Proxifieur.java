@@ -30,32 +30,32 @@ public class Proxifieur {
 		if (classType.equals(IClient.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
-					new ProxyHandlerClient(target));
+					new ProxyClient(target));
 		}
 		else if (classType.equals(IServer.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
-					new ProxyHandlerServer(target));
+					new ProxyServer(target));
 		}
 		else if (classType.equals(IBaseDonnees.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
-					new ProxyHandlerBDD(target));
+					new ProxyBDD(target));
 		}
 		else if (classType.equals(IConnectionManager.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
-					new ProxyHandlerConnectionManager(target));
+					new ProxyConnectionManager(target));
 		}
 		else if (classType.equals(ISecurityManager.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
-					new ProxyHandlerSecurityManager(target));
+					new ProxySecurityManager(target));
 		}
 		else if (classType.equals(IConfiguration.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
-					new ProxyHandlerConfiguration(target));
+					new ProxyConfiguration(target));
 		}
 		throw new NotProxiedClassException();
 	}

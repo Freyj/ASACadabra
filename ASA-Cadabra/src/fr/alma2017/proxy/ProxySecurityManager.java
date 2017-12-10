@@ -7,12 +7,12 @@ import java.util.List;
 
 import fr.alma2017.api.IObserver;
 
-public class ProxyHandlerConnectionManager implements InvocationHandler{
+public class ProxySecurityManager implements InvocationHandler{
 
 	private Object target;
 	private List<IObserver> observer;
 
-	public ProxyHandlerConnectionManager(Object target) {
+	public ProxySecurityManager(Object target) {
 		this.target = target;
 		this.observer = new ArrayList<IObserver>();
 	}
