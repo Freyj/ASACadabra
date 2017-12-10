@@ -1,9 +1,9 @@
 package fr.alma2017.api;
 
-import fr.alma2017.api.configuration.IConfiguration;
+import java.util.List;
 
 public interface IObservable {
-	void addObserver(IObserver observer);
-
-	void setObserver(IObserver observer);
+	public void addObserver(IObserver observer);
+	public List<IObserver> getObserver();
+	public void setObserver(IObserver observer);
 }

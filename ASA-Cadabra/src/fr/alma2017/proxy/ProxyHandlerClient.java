@@ -52,4 +52,8 @@ public class ProxyHandlerClient implements InvocationHandler {
 		this.target = target;
 	}
 
+	public List<IObserver> getObserver() {
+		return observer;
+	}
+
 }

@@ -4,6 +4,7 @@ import java.lang.reflect.Proxy;
 
 import fr.alma2017.api.IObservable;
 import fr.alma2017.api.client.IClient;
+import fr.alma2017.api.configuration.IConfiguration;
 import fr.alma2017.api.server.IBaseDonnees;
 import fr.alma2017.api.server.IConnectionManager;
 import fr.alma2017.api.server.ISecurityManager;
@@ -50,6 +51,11 @@ public class Proxifieur {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
 					new ProxyHandlerSecurityManager(target));
+		}
+		else if (classType.equals(IConfiguration.class)) {
+			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
+					concat(target.getClass().getInterfaces(), IObservable.class),
+					new ProxyHandlerConfiguration(target));
 		}
 		throw new NotProxiedClassException();
 	}

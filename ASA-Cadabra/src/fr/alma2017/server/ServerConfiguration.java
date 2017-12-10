@@ -1,6 +1,9 @@
 package fr.alma2017.server;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import fr.alma2017.api.IObservable;
 import fr.alma2017.api.composant.IComposant;
@@ -20,7 +23,18 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 	
 
 	public ServerConfiguration(IServer serverFromCSConfiguration) throws NotProxiedClassException {
-		this.interfaceConfiguration = new InterfaceConfiguration();
+		List<Class<?>> portRequis = new ArrayList<Class<?>>();
+		List<Class<?>> portFournis = new ArrayList<Class<?>>();
+		portRequis.add(ISecurityManager.class);
+		portRequis.add(IConnectionManager.class);
+		portRequis.add(IBaseDonnees.class);
+		portRequis.add(IServer.class);
+
+		portFournis.add(ISecurityManager.class);
+		portFournis.add(IConnectionManager.class);
+		portFournis.add(IBaseDonnees.class);
+		
+		this.interfaceConfiguration = new InterfaceConfiguration(portRequis, portFournis);
 		this.composantsInternes = new ArrayList<IComposant>();
 		ISecurityManager securityManager = (ISecurityManager) Proxifieur.getProxyFor(new SecurityManager(), ISecurityManager.class);
 		IConnectionManager connectionManager = (IConnectionManager) Proxifieur.getProxyFor(new ConnectionManager(), IConnectionManager.class);

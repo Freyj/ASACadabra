@@ -15,8 +15,6 @@ public class AComposant implements IComposant {
 
 	public AComposant() {
 		super();
-		this.interfaceRequise = new InterfaceComposantRequise();
-		this.interfaceFournie = new InterfaceComposantFournie();
 		this.composantsInternes = new ArrayList<IComposant>();
 	}
 

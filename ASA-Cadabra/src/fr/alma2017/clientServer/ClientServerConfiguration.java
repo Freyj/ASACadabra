@@ -1,7 +1,9 @@
 package fr.alma2017.clientServer;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import fr.alma2017.api.IObservable;
 import fr.alma2017.api.client.IClient;
@@ -10,6 +12,7 @@ import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.configuration.IConfiguration;
 import fr.alma2017.api.configuration.IInterfaceConfiguration;
 import fr.alma2017.api.connecteur.IConnecteur;
+import fr.alma2017.api.server.IBaseDonnees;
 import fr.alma2017.api.server.IServer;
 import fr.alma2017.client.Client;
 import fr.alma2017.configurationClass.AConfiguration;
@@ -28,8 +31,13 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 	}
 	
 	public ClientServerConfiguration() throws NotProxiedClassException {
+		List<Class<?>> portRequis = new ArrayList<Class<?>>();
+		List<Class<?>> portFournis = new ArrayList<Class<?>>();
+		portRequis.add(IClient.class);
+		portRequis.add(IServer.class);
+		//portFournis.add(IRPC.class);
 		
-		interfaceConfiguration = new InterfaceConfiguration();
+		interfaceConfiguration = new InterfaceConfiguration(portRequis, portFournis);
 		composantsInternes = new ArrayList<IComposant>();
 		connecteurs = new ArrayList<IConnecteur>();
 		
