@@ -12,18 +12,20 @@ public class ConnectionManager extends AComposant implements IComposant, IConnec
 	public ConnectionManager() {
 
 	}
-	
+
 	public void requestConnection(Object message) {
 		System.out.println("YOU HAZ REQUESTED A CONNECTION");
 	}
-	
+
 
 	@Override
 	public void notify(Object source) {
 		if(source instanceof List<?>) {	
+			List<Object> sourceList = (List<Object>) source;
+			sourceList.add(0,IConnectionManager.class);
 			if(Main.Sysout) {
 				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
-						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
+						sourceList.get(0) + " : " + sourceList.get(2) );
 			}
 		}
 	}
