@@ -14,7 +14,7 @@ public class ConnectionManager extends AComposant implements IComposant, IConnec
 	}
 	
 	public void requestConnection(Object message) {
-		
+		System.out.println("YOU HAZ REQUESTED A CONNECTION");
 	}
 	
 
