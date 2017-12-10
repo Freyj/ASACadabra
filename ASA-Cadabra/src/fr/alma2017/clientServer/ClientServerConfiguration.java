@@ -50,15 +50,6 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 	}
 	
 	@Override
-	public void bindComposant() {
-		for(IComposant composant : this.composantsInternes) {
-			if(composant instanceof IObservable) {
-				this.interfaceConfiguration.createBinding(this, (IObservable)composant);
-			}
-		}
-	}
-	
-	@Override
 	public IInterfaceConfiguration getInterface() {
 		return this.interfaceConfiguration;
 	}
@@ -88,11 +79,7 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 	public void sendMessage(IServer server, Object source) {
 		
 	}
-
-	public void sendMessage(IServer server, Object source) {
-		
-	}
-
+	
 	@Override
 	public IServer getServer() {
 		IServer res = null;

@@ -23,13 +23,5 @@ public class ClientConfiguration extends AConfiguration implements IConfiguratio
 		
 	}
 
-	@Override
-	public void bindComposant() {
-		for(IComposant composant : this.composantsInternes) {
-			if(composant instanceof IObservable) {
-				this.interfaceConfiguration.createBinding(this, (IObservable)composant);
-			}
-		}
-	}
 
 }
