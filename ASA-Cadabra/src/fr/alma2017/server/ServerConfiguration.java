@@ -69,8 +69,15 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 			}
 			
 			if(Main.Sysout) {
+				if (listeSource.size() == 3 ) {
 				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
 						listeSource.get(0) + " : " + listeSource.get(2) );
+				}
+				else {
+					System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+							listeSource.get(1) + " : " + listeSource.get(3) );
+					System.out.println("interface qui lance le machin" + listeSource.get(0));
+				}
 			}
 			
 			

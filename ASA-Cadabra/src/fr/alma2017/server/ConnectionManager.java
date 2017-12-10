@@ -21,11 +21,9 @@ public class ConnectionManager extends AComposant implements IComposant, IConnec
 	@Override
 	public void notify(Object source) {
 		if(source instanceof List<?>) {	
-			List<Object> sourceList = (List<Object>) source;
-			sourceList.add(0,IConnectionManager.class);
 			if(Main.Sysout) {
 				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
-						sourceList.get(0) + " : " + sourceList.get(2) );
+						((List<Object>) source).get(0) + " : " + ((List<Object>) source).get(2) );
 			}
 		}
 	}
