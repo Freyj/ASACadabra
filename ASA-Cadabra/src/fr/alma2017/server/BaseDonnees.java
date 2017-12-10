@@ -30,6 +30,7 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 	 * @param utilisateur
 	 * @return Si il n'existe pas, renvoie un String vide
 	 */
+	@Override
 	public String getMotDePasseFromUtilisateur(String utilisateur) {
 		if (valuesUsers.containsKey(utilisateur)) {
 			return valuesUsers.get(utilisateur);
@@ -42,6 +43,7 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 	/**
 	 * Ajout d'un utilisateur dans la "base de données"
 	 */
+	@Override
 	public void addUtilisateur(String nom, String mdp) {
 		if (!valuesUsers.containsKey(nom)) {
 			valuesUsers.put(nom, mdp);
