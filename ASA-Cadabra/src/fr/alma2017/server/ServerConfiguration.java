@@ -60,6 +60,9 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 			else if (listeSource.get(0) instanceof ISecurityManager) {
 				this.getBaseDonnees().getInfo(listeSource.subList(1, listeSource.size()));
 			}
+			else if (listeSource.get(0) instanceof IBaseDonnees) {
+				
+			}
 			
 			if(Main.Sysout) {
 				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
