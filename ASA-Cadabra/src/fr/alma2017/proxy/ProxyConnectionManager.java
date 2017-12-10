@@ -48,6 +48,9 @@ public class ProxyConnectionManager implements InvocationHandler{
 			//this.observer.notify(this.target);
 			System.out.println(target.getClass().getName() + " ["+ method.getName().substring(3) + "=" + args[0] + "] is modified");
 		}else{
+			if(Main.Sysout) {
+				System.out.println("\tProxy configurationServer :  call " + method.getName());
+			}
 			ret = method.invoke(this.target, args);
 		}
 		return ret;
