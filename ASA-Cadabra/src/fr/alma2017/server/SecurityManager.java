@@ -9,7 +9,7 @@ import fr.alma2017.composantClass.AComposant;
 public class SecurityManager extends AComposant implements IComposant, ISecurityManager {
 
 	public SecurityManager() {
-		super();
+		
 	}
 
 	@Override
@@ -21,8 +21,7 @@ public class SecurityManager extends AComposant implements IComposant, ISecurity
 	}
 
 	@Override
-	public boolean authentify(List<?> source) {
+	public void authentify(List<?> source) {
 		
-		return false;
 	}
 }
