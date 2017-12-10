@@ -1,12 +1,11 @@
 package fr.alma2017.server;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.HashMap;
+import java.util.List;
 
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.server.IBaseDonnees;
-import fr.alma2017.api.server.ISecurityManager;
 import fr.alma2017.clientServer.Main;
 import fr.alma2017.composantClass.AComposant;
 import fr.alma2017.composantClass.InterfaceComposantFournie;
