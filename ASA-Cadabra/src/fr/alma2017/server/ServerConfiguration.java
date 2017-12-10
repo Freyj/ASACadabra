@@ -52,15 +52,19 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 		if(source instanceof List<?>) {	
 			List<?> listeSource = (List<?>) source;
 			if (listeSource.get(0) instanceof String) {
+				System.out.println("JE SUIS UN STRING");
 				this.getConnectionManager().requestConnection(listeSource);
 			}
 			else if (listeSource.get(0) instanceof IConnectionManager) {
+				System.out.println("CONNEXIIIIOON");
 				this.getSecurityManager().authentify(listeSource.subList(1, listeSource.size()));
 			}
 			else if (listeSource.get(0) instanceof ISecurityManager) {
+				System.out.println("THIS IS GRAVE SECURE");
 				this.getBaseDonnees().getInfo(listeSource.subList(1, listeSource.size()));
 			}
 			else if (listeSource.get(0) instanceof IBaseDonnees) {
+				System.out.println("GIMME ALL DA DATA");
 				
 			}
 			
