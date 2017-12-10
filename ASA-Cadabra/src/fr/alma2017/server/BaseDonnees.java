@@ -12,7 +12,8 @@ import fr.alma2017.composantClass.InterfaceComposantFournie;
 
 public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees {
 
-	private HashMap<String, String> valuesUsers;
+	private HashMap<String, String> mdpUsers;
+	private HashMap<String, String> messagesUsers;
 	
 	public BaseDonnees() {
 		List<Class<?>> portFournis = new ArrayList<Class<?>>();
@@ -20,7 +21,8 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 		portFournis.add(IBaseDonnees.class);
 		serviceFournis.add(IBaseDonnees.class);
 		this.interfaceFournie = new InterfaceComposantFournie(portFournis, serviceFournis);
-		valuesUsers = new HashMap<String, String>();
+		mdpUsers = new HashMap<String, String>();
+		messagesUsers = new HashMap<String, String>();
 		//ajout d'un user pour l'example
 		//tout en clair, vive la securite \o/
 		addUtilisateur("bob", "example");
@@ -33,8 +35,8 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 	 */
 	@Override
 	public String getMotDePasseFromUtilisateur(String utilisateur) {
-		if (valuesUsers.containsKey(utilisateur)) {
-			return valuesUsers.get(utilisateur);
+		if (mdpUsers.containsKey(utilisateur)) {
+			return mdpUsers.get(utilisateur);
 		}
 		else {
 			return "";
@@ -46,12 +48,41 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 	 */
 	@Override
 	public void addUtilisateur(String nom, String mdp) {
-		if (!valuesUsers.containsKey(nom)) {
-			valuesUsers.put(nom, mdp);
+		if (!mdpUsers.containsKey(nom)) {
+			mdpUsers.put(nom, mdp);
+			messagesUsers.put(nom,  "");
 		}
 		else {
 			//change with an exception some day
 			System.out.println("Utilisateur deja existant");
+		}
+	}
+	
+	
+	/**
+	 * Changement du message de la bdd
+	 */
+	@Override
+	public void setMessage(String nom, String mess) {
+		if (messagesUsers.containsKey(nom)) {
+			messagesUsers.put(nom, mess);
+		}
+		else {
+			//change with an exception some day
+			System.out.println("Utilisateur non existant, message non modifie");
+		}
+	}
+	
+	/**
+	 * Récupération du message en bdd
+	 */
+	@Override
+	public String getMessage(String nom) {
+		if (messagesUsers.containsKey(nom)) {
+			return messagesUsers.get(nom);
+		}
+		else {
+			return "";
 		}
 	}
 	
@@ -67,7 +98,13 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 
 	@Override
 	public void getInfo(List<?> source) {
-		// TODO Auto-generated method stub
+		if (source.size() == 3) {
+			if (source.get(0) instanceof String) {
+				List<String> sourceList = (List<String>) source;
+				setMessage(sourceList.get(0), sourceList.get(2));
+				
+			}
+		}
 		
 	}
 		
