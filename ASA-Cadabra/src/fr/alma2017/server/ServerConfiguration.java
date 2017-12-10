@@ -50,12 +50,15 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 	@Override
 	public void notify(Object source) {
 		if(source instanceof List<?>) {	
+			List<?> listeSource = (List<?>) source;
 			if(Main.Sysout) {
 				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
-						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
+						listeSource.get(0) + " : " + listeSource.get(2) );
 			}
-
-		}else if(Main.Sysout) {
+			this.getConnectionManager().requestConnection(source);
+			
+			
+		} else if(Main.Sysout) {
 			System.out.println("Notification pour " + this.getClass().getName() + " : " + source.toString());
 		}
 	}

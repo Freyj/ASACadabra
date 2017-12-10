@@ -10,8 +10,18 @@ import fr.alma2017.composantClass.AComposant;
 public class ConnectionManager extends AComposant implements IComposant, IConnectionManager {
 
 	public ConnectionManager() {
-		super();
+
 	}
+	
+	public void requestConnection(Object message) {
+		if (message instanceof List<?>) {
+			//on check le bon nombre d'argument
+			if (((List<?>) message).size() == 3) {
+				
+			}
+		}
+	}
+	
 
 	@Override
 	public void notify(Object source) {
