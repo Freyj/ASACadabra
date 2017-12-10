@@ -22,7 +22,7 @@ public class SecurityManager extends AComposant implements IComposant, ISecurity
 
 	@Override
 	public void authentify(List<?> source) {
-		System.out.println("YOU ARE VALID USER!");
+		System.out.println("YOU ARE VALID USER");
 		
 	}
 }
