@@ -33,4 +33,9 @@ public class AComposant implements IComposant {
 		return this.composantsInternes;
 	}
 
+	@Override
+	public void notify(Object source) {
+		
+	}
+
 }

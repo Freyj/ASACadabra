@@ -6,15 +6,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.alma2017.api.IObserver;
-import fr.alma2017.api.client.IClient;
 import fr.alma2017.clientServer.Main;
 
-public class ProxyServer implements InvocationHandler {
-	
+public class ProxyConfigurationServer implements InvocationHandler {
+
 	private Object target;
 	private List<IObserver> observer;
 
-	public ProxyServer(Object target) {
+	public ProxyConfigurationServer(Object target) {
 		this.target = target;
 		this.observer = new ArrayList<IObserver>();
 	}
@@ -23,23 +22,20 @@ public class ProxyServer implements InvocationHandler {
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Object ret;
 		if(method.getName().equals("addObserver")){
+			//Ne fonctionne pas : java.lang.IllegalArgumentException: object is not an instance of declaring class
+			//ret = method.invoke(this.target, args);
+
+			//Fonctionne correctement
 			ret = Void.TYPE;
 			this.observer.add( (IObserver) args[0] );
+		}else if(method.getName().equals("getObserver")){
+			ret = this.getObserver();
 		}else if(method.getName().substring(0, 3).equals("set") && this.observer != null){
 			ret = method.invoke(this.target, args);
 			//this.observer.notify(this.target);
 			if(Main.Sysout) {
 				System.out.println(target.getClass().getName() + " ["+ method.getName().substring(3) + "=" + args[0] + "] is modified");
 			}
-		/*}else if(method.getName().equals("sendMessage") && this.observer != null){
-			List<String> message = ((IClient)target).makeMessage();
-			ret = method.invoke(this.target, args);
-			if(Main.Sysout) {
-				System.out.println(this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
-			}
-			for(IObserver observer : this.observer) {
-				observer.notify( message );
-			}*/
 		}else{
 			ret = method.invoke(this.target, args);
 		}

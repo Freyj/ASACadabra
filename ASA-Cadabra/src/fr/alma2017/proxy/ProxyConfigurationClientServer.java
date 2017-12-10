@@ -8,12 +8,12 @@ import java.util.List;
 import fr.alma2017.api.IObserver;
 import fr.alma2017.clientServer.Main;
 
-public class ProxyConfiguration implements InvocationHandler {
+public class ProxyConfigurationClientServer implements InvocationHandler {
 
 	private Object target;
 	private List<IObserver> observer;
 
-	public ProxyConfiguration(Object target) {
+	public ProxyConfigurationClientServer(Object target) {
 		this.target = target;
 		this.observer = new ArrayList<IObserver>();
 	}
@@ -22,10 +22,6 @@ public class ProxyConfiguration implements InvocationHandler {
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Object ret;
 		if(method.getName().equals("addObserver")){
-			//Ne fonctionne pas : java.lang.IllegalArgumentException: object is not an instance of declaring class
-			//ret = method.invoke(this.target, args);
-
-			//Fonctionne correctement
 			ret = Void.TYPE;
 			this.observer.add( (IObserver) args[0] );
 		}else if(method.getName().equals("getObserver")){
@@ -36,6 +32,7 @@ public class ProxyConfiguration implements InvocationHandler {
 			if(Main.Sysout) {
 				System.out.println(target.getClass().getName() + " ["+ method.getName().substring(3) + "=" + args[0] + "] is modified");
 			}
+		
 		}else{
 			ret = method.invoke(this.target, args);
 		}

@@ -14,4 +14,6 @@ public interface IInterfaceConfiguration {
 
 	public boolean havePortRequis(IConfiguration configuration);
 
+	//public void createBinding(Object configuration, Object composant);
+
 }

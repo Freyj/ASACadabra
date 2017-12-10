@@ -45,18 +45,27 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 		//instanciation du client
 		IClient client = (IClient) Proxifieur.getProxyFor(new Client(), IClient.class);
 		composantsInternes.add(client);
-
+/*
 		for(IComposant composant : this.composantsInternes) {
 			if(composant instanceof IObservable) {
 				this.interfaceConfiguration.createBinding(this, (IObservable)composant);
 			}
 		}
-		
+*/		
 		//instanciation des connecteurs
 		//TODO
 		
 	}
 
+	@Override
+	public void bindComposant() {
+		for(IComposant composant : this.composantsInternes) {
+			if(composant instanceof IObservable) {
+				this.interfaceConfiguration.createBinding(this, (IObservable)composant);
+			}
+		}
+	}
+	
 	@Override
 	public IInterfaceConfiguration getInterface() {
 		return this.interfaceConfiguration;
@@ -74,12 +83,17 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 
 	@Override
 	public void notify(Object source) {
-		if(Main.Sysout) {
-			if(source instanceof List<?>) {
+		if(source instanceof List<?>) {	
+			if(Main.Sysout) {
 				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
-						((List)source).get(0) + " : " + ((List)source).get(2) );
+						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
 			}
+			this.sendMessage(this.getServer(), source);
 		}
+	}
+
+	public void sendMessage(IServer server, Object source) {
+		
 	}
 
 	@Override

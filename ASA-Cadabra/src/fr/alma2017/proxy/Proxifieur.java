@@ -4,11 +4,13 @@ import java.lang.reflect.Proxy;
 
 import fr.alma2017.api.IObservable;
 import fr.alma2017.api.client.IClient;
+import fr.alma2017.api.clientServer.IClientServerConfiguration;
 import fr.alma2017.api.configuration.IConfiguration;
 import fr.alma2017.api.server.IBaseDonnees;
 import fr.alma2017.api.server.IConnectionManager;
 import fr.alma2017.api.server.ISecurityManager;
 import fr.alma2017.api.server.IServer;
+import fr.alma2017.api.server.IServerConfiguration;
 import fr.alma2017.exception.NotProxiedClassException;
 
 public class Proxifieur {
@@ -52,10 +54,15 @@ public class Proxifieur {
 					concat(target.getClass().getInterfaces(), IObservable.class),
 					new ProxySecurityManager(target));
 		}
-		else if (classType.equals(IConfiguration.class)) {
+		else if (classType.equals(IClientServerConfiguration.class)) {
 			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
 					concat(target.getClass().getInterfaces(), IObservable.class),
-					new ProxyConfiguration(target));
+					new ProxyConfigurationClientServer(target));
+		}
+		else if (classType.equals(IServerConfiguration.class)) {
+			return Proxy.newProxyInstance(target.getClass().getClassLoader(), 
+					concat(target.getClass().getInterfaces(), IObservable.class),
+					new ProxyConfigurationServer(target));
 		}
 		throw new NotProxiedClassException();
 	}
