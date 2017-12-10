@@ -25,11 +25,10 @@ public class Main {
 		}
 	}
 	
-	
 	public static boolean Sysout = true;	
 	
 	public static void main(String[] args) throws NotProxiedClassException {
-		//Main.Sysout = false;
+		Main.Sysout = false;
 		IClientServerConfiguration clientServeurConfig = (IClientServerConfiguration) 
 				Proxifieur.getProxyFor(new ClientServerConfiguration(), IClientServerConfiguration.class);
 
