@@ -22,12 +22,12 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 		this.interfaceFournie = new InterfaceComposantFournie(portFournis, serviceFournis);
 		valuesUsers = new HashMap<String, String>();
 		//ajout d'un user pour l'example
-		//tout en clair, vive la sécurité \o/
+		//tout en clair, vive la securite \o/
 		addUtilisateur("bob", "example");
 	}
 	
 	/**
-	 * Renvoie le mdp de l'utilisateur demandé
+	 * Renvoie le mdp de l'utilisateur demande
 	 * @param utilisateur
 	 * @return Si il n'existe pas, renvoie un String vide
 	 */
@@ -42,7 +42,7 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 	}
 	
 	/**
-	 * Ajout d'un utilisateur dans la "base de données"
+	 * Ajout d'un utilisateur dans la "base de donnees"
 	 */
 	@Override
 	public void addUtilisateur(String nom, String mdp) {
@@ -51,7 +51,7 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 		}
 		else {
 			//change with an exception some day
-			System.out.println("Utilisateur déjà existant");
+			System.out.println("Utilisateur deja existant");
 		}
 	}
 	
