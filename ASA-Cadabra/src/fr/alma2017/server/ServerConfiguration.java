@@ -115,6 +115,4 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 		return res;
 	}
 
-
-
 }
