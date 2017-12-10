@@ -15,6 +15,8 @@ public class ConnectionManager extends AComposant implements IComposant, IConnec
 	
 	public void requestConnection(Object message) {
 		if (message instanceof List<?>) {
+			
+			
 			//on check le bon nombre d'argument
 			if (((List<?>) message).size() == 3) {
 				

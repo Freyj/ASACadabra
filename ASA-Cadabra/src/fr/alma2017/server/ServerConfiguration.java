@@ -51,11 +51,20 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 	public void notify(Object source) {
 		if(source instanceof List<?>) {	
 			List<?> listeSource = (List<?>) source;
+			if (listeSource.get(0) instanceof String) {
+				this.getConnectionManager().requestConnection(listeSource);
+			}
+			else if (listeSource.get(0) instanceof IConnectionManager) {
+				this.getSecurityManager().authentify(listeSource.subList(1, listeSource.size()));
+			}
+			else if (listeSource.get(0) instanceof ISecurityManager) {
+				this.getBaseDonnees().getInfo(listeSource.subList(1, listeSource.size()));
+			}
+			
 			if(Main.Sysout) {
 				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
 						listeSource.get(0) + " : " + listeSource.get(2) );
 			}
-			this.getConnectionManager().requestConnection(source);
 			
 			
 		} else if(Main.Sysout) {

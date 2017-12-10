@@ -64,5 +64,11 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 			}
 		}
 	}
+
+	@Override
+	public void getInfo(List<?> source) {
+		// TODO Auto-generated method stub
+		
+	}
 		
 }
