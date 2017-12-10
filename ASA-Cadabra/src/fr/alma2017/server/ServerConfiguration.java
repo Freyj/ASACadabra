@@ -46,11 +46,15 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 
 		this.connecteurs = new ArrayList<IConnecteur>();
 	}
+	
 
 	@Override
 	public void notify(Object source) {
 		if(source instanceof List<?>) {	
 			List<?> listeSource = (List<?>) source;
+			//System.out.println("Size");
+			//System.out.println(listeSource.size());
+			//System.out.println(listeSource.toString());
 			if (listeSource.get(0) instanceof String) {
 				System.out.println("JE SUIS UN STRING");
 				this.getConnectionManager().requestConnection(listeSource);
@@ -67,13 +71,12 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 				System.out.println("GIMME ALL DA DATA");
 				
 			}
-			
 			if(Main.Sysout) {
 				if (listeSource.size() == 3 ) {
-				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+				System.out.println("Notification pour la classe " + this.getClass().getName() + " : " + 
 						listeSource.get(0) + " : " + listeSource.get(2) );
 				}
-				else {
+				else if (listeSource.size() > 3){
 					System.out.println("Notification pour " + this.getClass().getName() + " : " + 
 							listeSource.get(1) + " : " + listeSource.get(3) );
 					System.out.println("interface qui lance le machin " + listeSource.get(0));
