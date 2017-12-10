@@ -36,10 +36,9 @@ public class ProxyConnectionManager implements InvocationHandler{
 				System.out.println("Proxy ConnectionManager : " + this.target.getClass().getName() + " est observe par " + this.observer.size() + " objets.");
 			}
 			for(IObserver observer : this.observer) {
-				if (args[0] instanceof List<?>) {
+				if (args[0] instanceof List<?>) {					
 					List<Object> sourceList = (List<Object>) args[0];
 					sourceList.add(0, IConnectionManager.class);
-					observer.notify(sourceList);
 				}
 			}
 		}	

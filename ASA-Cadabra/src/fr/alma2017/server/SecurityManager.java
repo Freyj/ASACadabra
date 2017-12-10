@@ -14,6 +14,7 @@ public class SecurityManager extends AComposant implements IComposant, ISecurity
 
 	@Override
 	public void notify(Object source) {
+		System.out.println("I'm in your security manager, stealing your data");
 		if (source instanceof List<?>) {
 			List<Object> sourceList = (List<Object>) source;
 			sourceList.add(0,ISecurityManager.class);
