@@ -3,6 +3,7 @@ package fr.alma2017.proxy;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import fr.alma2017.api.IObserver;
@@ -37,8 +38,10 @@ public class ProxyConnectionManager implements InvocationHandler{
 			}
 			for(IObserver observer : this.observer) {
 				if (args[0] instanceof List<?>) {					
-					List<Object> sourceList = (List<Object>) args[0];
-					sourceList.add(0, IConnectionManager.class);
+					List<Object> sourceList = new ArrayList<Object>();
+					sourceList.add(IConnectionManager.class);
+					sourceList.addAll((List<Object>) args[0]);
+					observer.notify(sourceList);
 				}
 			}
 		}	

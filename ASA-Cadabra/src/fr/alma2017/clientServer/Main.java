@@ -17,6 +17,7 @@ import fr.alma2017.server.ServerConfiguration;
  *
  */
 public class Main {
+
 	public static void bindComposant(IConfiguration configuration) {
 		for(IComposant composant : configuration.getComposantsInternes()) {
 			if(composant instanceof IObservable) {
