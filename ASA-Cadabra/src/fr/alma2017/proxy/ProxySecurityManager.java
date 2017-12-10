@@ -6,6 +6,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.alma2017.api.IObserver;
+import fr.alma2017.api.server.IConnectionManager;
+import fr.alma2017.clientServer.Main;
 
 public class ProxySecurityManager implements InvocationHandler{
 
@@ -31,7 +33,21 @@ public class ProxySecurityManager implements InvocationHandler{
 			ret = method.invoke(this.target, args);
 			//this.observer.notify(this.target);
 			System.out.println(target.getClass().getName() + " ["+ method.getName().substring(3) + "=" + args[0] + "] is modified");
-		}else{
+		}
+		else if (method.getName().equals("authentify") && this.observer != null) {
+			ret = method.invoke(this.target, args);
+			if(Main.Sysout) {
+				System.out.println("Proxy ConnectionManager : " + this.target.getClass().getName() + " est observe par " + this.observer.size() + " objets.");
+			}
+			for(IObserver observer : this.observer) {
+				if (args[0] instanceof List<?>) {					
+					List<Object> sourceList = (List<Object>) args[0];
+					sourceList.add(0, IConnectionManager.class);
+				}
+			}
+		}	
+
+		else{
 			ret = method.invoke(this.target, args);
 		}
 		return ret;
