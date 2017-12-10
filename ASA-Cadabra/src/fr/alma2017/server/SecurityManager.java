@@ -14,12 +14,15 @@ public class SecurityManager extends AComposant implements IComposant, ISecurity
 
 	@Override
 	public void notify(Object source) {
-		
+		if (source instanceof List<?>) {
+			List<Object> sourceList = (List<Object>) source;
+			sourceList.add(0,ISecurityManager.class);
+		}
 	}
 
 	@Override
 	public boolean authentify(List<?> source) {
-		// TODO Auto-generated method stub
+		
 		return false;
 	}
 }
