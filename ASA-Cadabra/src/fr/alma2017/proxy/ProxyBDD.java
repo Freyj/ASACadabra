@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.alma2017.api.IObserver;
+import fr.alma2017.api.server.IBaseDonnees;
 import fr.alma2017.clientServer.Main;
 
 public class ProxyBDD implements InvocationHandler{
@@ -31,9 +32,16 @@ public class ProxyBDD implements InvocationHandler{
 			if(Main.Sysout) {
 				System.out.println("Proxy BDD : " + this.target.getClass().getName() + " est observe par " + this.observer.size() + " objets.");
 			}
+
 			for(IObserver observer : this.observer) {
-				observer.notify( "" );
+				if (args[0] instanceof List<?>) {
+					List<Object> sourceList = new ArrayList<Object>();
+					sourceList.add(IBaseDonnees.class);
+					sourceList.addAll((List<Object>) args[0]);
+					observer.notify(sourceList);
+                }
 			}
+			
 		}		
 		else if(method.getName().substring(0, 3).equals("set") && this.observer != null){
 			ret = method.invoke(this.target, args);

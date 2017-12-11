@@ -5,11 +5,12 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import fr.alma2017.api.IObserver;
+import fr.alma2017.api.clientServer.IClientServerConfiguration;
 import fr.alma2017.api.server.IServerConfiguration;
 import fr.alma2017.clientServer.Main;
 
 public class ProxyServer implements InvocationHandler {
-	
+
 	private Object target;
 	private List<IObserver> observer;
 
@@ -24,12 +25,14 @@ public class ProxyServer implements InvocationHandler {
 		if(method.getName().equals("addObserver")){
 			ret = Void.TYPE;
 			this.observer.add( (IObserver) args[0] );
-		}else if(method.getName().substring(0, 3).equals("set") && this.observer != null){
+		}
+		else if(method.getName().substring(0, 3).equals("set") && this.observer != null){
 			ret = method.invoke(this.target, args);
 			if(Main.Sysout) {
 				System.out.println(target.getClass().getName() + " ["+ method.getName().substring(3) + "=" + args[0] + "] is modified");
 			}
-		}else if(method.getName().equals("sendMessage") && this.observer != null){
+		}
+		else if(method.getName().equals("sendMessage") && this.observer != null){
 			ret = method.invoke(this.target, args);
 			if(Main.Sysout) {
 				System.out.println("Proxy Server : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
@@ -41,7 +44,21 @@ public class ProxyServer implements InvocationHandler {
 					}
 				}
 			}
-		}else{
+		}
+		else if (method.getName().equals("answerToClient") && this.observer != null){
+			ret = method.invoke(this.target, args);
+			if(Main.Sysout) {
+				System.out.println("Proxy Server : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
+			}
+			for(IObserver observer : this.observer) {
+				if(observer instanceof IClientServerConfiguration) {
+					if(args[0] instanceof List<?>) {
+						observer.notify( args[0] );
+					}
+				}
+			}
+		}
+		else{
 			if(Main.Sysout) {
 				System.out.println("\tProxy Server :  call " + method.getName());
 			}

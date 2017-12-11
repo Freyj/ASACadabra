@@ -54,7 +54,10 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 			List<?> listeSource = (List<?>) source;
 			//System.out.println("Size");
 			//System.out.println(listeSource.size());
-			System.out.println(listeSource.toString());
+			if (Main.Sysout) {
+				System.out.println("La source contient : ");
+				System.out.println(listeSource.toString());
+			}
 			if (listeSource.get(0) instanceof String) {
 				this.getConnectionManager().requestConnection(listeSource);
 			}
@@ -65,7 +68,7 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 				this.getBaseDonnees().getInfo(listeSource.subList(1, listeSource.size()));
 			}
 			else if (listeSource.get(0).equals(IBaseDonnees.class)) {
-				System.out.println("GIMME ALL DA DATA");
+				this.getServer().answerToClient(listeSource.subList(1, listeSource.size()));
 				
 			}
 			if(Main.Sysout) {
