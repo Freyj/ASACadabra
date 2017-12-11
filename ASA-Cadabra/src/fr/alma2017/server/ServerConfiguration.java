@@ -54,20 +54,20 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 			List<?> listeSource = (List<?>) source;
 			//System.out.println("Size");
 			//System.out.println(listeSource.size());
-			//System.out.println(listeSource.toString());
+			System.out.println(listeSource.toString());
 			if (listeSource.get(0) instanceof String) {
 				System.out.println("JE SUIS UN STRING");
 				this.getConnectionManager().requestConnection(listeSource);
 			}
-			else if (listeSource.get(0) instanceof IConnectionManager) {
+			else if (listeSource.get(0).equals(IConnectionManager.class)) {
 				System.out.println("CONNEXIIIIOON");
 				this.getSecurityManager().authentify(listeSource.subList(1, listeSource.size()));
 			}
-			else if (listeSource.get(0) instanceof ISecurityManager) {
+			else if (listeSource.get(0).equals(ISecurityManager.class)) {
 				System.out.println("THIS IS GRAVE SECURE");
 				this.getBaseDonnees().getInfo(listeSource.subList(1, listeSource.size()));
 			}
-			else if (listeSource.get(0) instanceof IBaseDonnees) {
+			else if (listeSource.get(0).equals(IBaseDonnees.class)) {
 				System.out.println("GIMME ALL DA DATA");
 				
 			}
