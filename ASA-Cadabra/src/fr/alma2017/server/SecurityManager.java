@@ -19,7 +19,6 @@ public class SecurityManager extends AComposant implements IComposant, ISecurity
 		if (source instanceof List<?>) {
 			List<Object> sourceList = (List<Object>) source;
 			sourceList.add(0,ISecurityManager.class);
-			//source.notify();
 		}
 	}
 

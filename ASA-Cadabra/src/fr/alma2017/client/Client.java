@@ -35,7 +35,6 @@ public class Client extends AComposant implements IComposant, IClient {
 		motDePasse = mdp;
 	}
 	
-	//Getters & Setters
 	@Override
 	public String getMessage() {
 		return message;
@@ -79,12 +78,6 @@ public class Client extends AComposant implements IComposant, IClient {
 	 */
 	@Override
 	public void sendMessage() {
-		//format de l'envoi : utilisateur + " " + motdepasse + " " + message
-		//ArrayList<String> infosEnvoyees = new ArrayList<String>();
-		//infosEnvoyees.add(getNomUtilisateur());
-		//infosEnvoyees.add(getMotDePasse());
-		//infosEnvoyees.add(getMessage());
-		//this.getInterfaceRequise().sendRequest(infosEnvoyees);
 		
 	}
 
@@ -92,7 +85,7 @@ public class Client extends AComposant implements IComposant, IClient {
 	public void notify(Object source) {
 		if(source instanceof List<?>) {	
 			if(Main.Sysout) {
-				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+				System.out.println("\t\tNotification pour " + this.getClass().getName() + " : " + 
 						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
 			}
 		}
@@ -100,10 +93,10 @@ public class Client extends AComposant implements IComposant, IClient {
 
 	@Override
 	public void receiveAnswer(List<?> subList) {
-		System.out.println("RECEIVE ANSWER !");
+		System.out.println("receive answer !");
 		if(subList instanceof List<?>) {	
 			if(Main.Sysout) {
-				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+				System.out.println("\t\tNotification pour " + this.getClass().getName() + " : " + 
 						((List<?>)subList).get(0) + " : " + ((List<?>)subList).get(2) );
 			}
 		}

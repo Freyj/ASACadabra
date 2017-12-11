@@ -34,7 +34,7 @@ public class ProxyClient implements InvocationHandler {
 			List<String> message = ((IClient)target).makeMessage();
 			ret = method.invoke(this.target, args);
 			if(Main.Sysout) {
-				System.out.println("Proxy Client : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
+				System.out.println("\tProxy Client : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
 			}
 			for(IObserver observer : this.observer) {
 				observer.notify( message );

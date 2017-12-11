@@ -52,18 +52,15 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 	public void notify(Object source) {
 		if(source instanceof List<?>) {	
 			List<?> listeSource = (List<?>) source;
-			//System.out.println("Size");
-			//System.out.println(listeSource.size());
-			System.out.println(listeSource.toString());
+			System.out.println("\t\t"+listeSource.toString());
 			if(Main.Sysout) {
 				if (listeSource.size() == 3 ) {
-				System.out.println("Notification pour la classe " + this.getClass().getName() + " : " + 
+				System.out.println("\t\tNotification pour la classe " + this.getClass().getName() + " : " + 
 						listeSource.get(0) + " : " + listeSource.get(2) );
 				}
 				else if (listeSource.size() > 3){
-					System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+					System.out.println("\t\tNotification pour " + this.getClass().getName() + " : " + 
 							listeSource.get(1) + " : " + listeSource.get(3) );
-					//System.out.println("interface qui agit " + listeSource.get(0));
 				}
 			}
 			try{
@@ -82,11 +79,11 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 				this.getBaseDonnees().getInfo(listeSource.subList(1, listeSource.size()));
 			}
 			else if (listeSource.get(0).equals(IBaseDonnees.class)) {
-				this.getServer().sendAnswer(listeSource);
+				this.getServer().sendAnswer(listeSource.subList(1, listeSource.size()));
 			}
 			
 		} else if(Main.Sysout) {
-			System.out.println("Notification pour " + this.getClass().getName() + " : " + source.toString());
+			System.out.println("\t\tNotification pour " + this.getClass().getName() + " : " + source.toString());
 		}
 	}
 

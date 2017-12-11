@@ -35,7 +35,7 @@ public class ProxyServer implements InvocationHandler {
 		}else if(method.getName().equals("sendMessage") && this.observer != null){
 			ret = method.invoke(this.target, args);
 			if(Main.Sysout) {
-				System.out.println("Proxy Server : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
+				System.out.println("\tProxy Server : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
 			}
 			for(IObserver observer : this.observer) {
 				if(observer instanceof IServerConfiguration) {
@@ -47,7 +47,8 @@ public class ProxyServer implements InvocationHandler {
 		}else if(method.getName().equals("sendAnswer") && this.observer != null){
 			ret = method.invoke(this.target, args);
 			if(Main.Sysout) {
-				System.out.println("Proxy Server : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
+				System.out.println("\tProxy Server : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
+
 			}
 			for(IObserver observer : this.observer) {
 				if(observer instanceof IClientServerConfiguration) {

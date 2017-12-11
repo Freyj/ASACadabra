@@ -94,7 +94,7 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 			sourceList.add(0,IBaseDonnees.class);
 			sourceList.add((Object) getMessage((String)sourceList.get(0)));
 			if(Main.Sysout) {
-				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+				System.out.println("\t\tNotification pour " + this.getClass().getName() + " : " + 
 						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
 			}
 		}

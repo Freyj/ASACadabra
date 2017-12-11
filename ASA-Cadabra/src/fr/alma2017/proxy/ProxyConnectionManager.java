@@ -24,17 +24,13 @@ public class ProxyConnectionManager implements InvocationHandler{
 	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
 		Object ret;
 		if(method.getName().equals("addObserver")){
-			//Ne fonctionne pas : java.lang.IllegalArgumentException: object is not an instance of declaring class
-			//ret = method.invoke(this.target, args);
-
-			//Fonctionne correctement
 			ret = Void.TYPE;
 			this.observer.add( (IObserver) args[0] );
 		}
 		else if (method.getName().equals("requestConnection") && this.observer != null) {
 			ret = method.invoke(this.target, args);
 			if(Main.Sysout) {
-				System.out.println("Proxy ConnectionManager : " + this.target.getClass().getName() + " est observe par " + this.observer.size() + " objets.");
+				System.out.println("\tProxy ConnectionManager : " + this.target.getClass().getName() + " est observe par " + this.observer.size() + " objets.");
 			}
 			for(IObserver observer : this.observer) {
 				if (args[0] instanceof List<?>) {					
@@ -47,7 +43,6 @@ public class ProxyConnectionManager implements InvocationHandler{
 		}	
 		else if(method.getName().substring(0, 3).equals("set") && this.observer != null){
 			ret = method.invoke(this.target, args);
-			//this.observer.notify(this.target);
 			System.out.println(target.getClass().getName() + " ["+ method.getName().substring(3) + "=" + args[0] + "] is modified");
 		}else{
 			if(Main.Sysout) {

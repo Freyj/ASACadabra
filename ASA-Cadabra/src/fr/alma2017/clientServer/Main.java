@@ -42,24 +42,13 @@ public class Main {
 		Main.Sysout = true;
 		System.out.println();
 		IClient client = clientServeurConfig.getClient();
-		
-		/*
-		client.sendMessage();
-		IObserver observer = new IObserver(){
-			@Override
-			public void notify(Object source) {
-				System.out.println(this.getClass().getName() + " " + source);					
-			}
-		};
-		((IObservable) client).addObserver(observer);
-		*/
-
+	
 		client.makeMessage();
 		client.setMessage("Piou");
 		client.sendMessage();
 		
-		//client.setMessage("Beeeeeep");
-		//client.sendMessage();
+		client.setMessage("Beeeeeep");
+		client.sendMessage();
 	}
 
 }

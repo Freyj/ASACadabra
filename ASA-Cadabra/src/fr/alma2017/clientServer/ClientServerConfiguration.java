@@ -31,7 +31,6 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 		List<Class<?>> portFournis = new ArrayList<Class<?>>();
 		portRequis.add(IClient.class);
 		portRequis.add(IServer.class);
-		//portFournis.add(IRPC.class);
 		
 		interfaceConfiguration = new InterfaceConfiguration(portRequis, portFournis);
 		composantsInternes = new ArrayList<IComposant>();
@@ -71,13 +70,12 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 			List<?> listeSource = (List<?>) source;
 			if(Main.Sysout) {
 				if (listeSource.size() == 3 ) {
-				System.out.println("Notification pour la classe " + this.getClass().getName() + " : " + 
+				System.out.println("\t\tNotification pour la classe " + this.getClass().getName() + " : " + 
 						listeSource.get(0) + " : " + listeSource.get(2) );
 				}
 				else if (listeSource.size() > 3){
-					System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+					System.out.println("\t\tNotification pour " + this.getClass().getName() + " : " + 
 							listeSource.get(1) + " : " + listeSource.get(3) );
-					//System.out.println("interface qui agit " + listeSource.get(0));
 				}
 			}
 			try{
@@ -86,16 +84,13 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 			} catch(InterruptedException ex) {
 			    Thread.currentThread().interrupt();
 			}
-			System.out.println("listeSource.get(0) instanceof String : " + listeSource.get(0) instanceof String);
 			if (listeSource.get(0) instanceof String) {
 				this.getServer().sendMessage(listeSource);
 			}
 			else if (listeSource.get(0).equals(IServer.class)) {
-				System.out.println("piooiesoingepnoieg");
 				this.getClient().receiveAnswer(listeSource.subList(1, listeSource.size()));
 			}
 			
-			//this.getServer().sendMessage((List<?>) source);
 		}
 	}
 	

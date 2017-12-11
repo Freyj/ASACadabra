@@ -23,7 +23,7 @@ public class ConnectionManager extends AComposant implements IComposant, IConnec
 	public void notify(Object source) {
 		if(source instanceof List<?>) {	
 			if(Main.Sysout) {
-				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+				System.out.println("\t\tNotification pour " + this.getClass().getName() + " : " + 
 						((List<Object>) source).get(0) + " : " + ((List<Object>) source).get(2) );
 			}
 		}
