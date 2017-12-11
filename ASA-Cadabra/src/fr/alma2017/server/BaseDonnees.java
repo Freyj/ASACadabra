@@ -65,7 +65,9 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 	 */
 	public void setMessage(String nom, String mess) {
 		if (messagesUsers.containsKey(nom)) {
+			System.out.println("Old message " + getMessage(nom) );
 			messagesUsers.put(nom, mess);
+			System.out.println("New message " + mess);
 		}
 		else {
 			//change with an exception some day
@@ -100,6 +102,9 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 
 	@Override
 	public void getInfo(List<?> source) {
+		if (Main.Sysout) {
+			System.out.println("Getting info from the DB");
+		}
 		if (source.size() == 3) {
 			if (source.get(0) instanceof String) {
 				List<String> sourceList = (List<String>) source;

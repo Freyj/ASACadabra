@@ -4,6 +4,7 @@ import java.util.List;
 
 import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.server.ISecurityManager;
+import fr.alma2017.clientServer.Main;
 import fr.alma2017.composantClass.AComposant;
 
 public class SecurityManager extends AComposant implements IComposant, ISecurityManager {
@@ -18,12 +19,15 @@ public class SecurityManager extends AComposant implements IComposant, ISecurity
 		if (source instanceof List<?>) {
 			List<Object> sourceList = (List<Object>) source;
 			sourceList.add(0,ISecurityManager.class);
+			//source.notify();
 		}
 	}
 
 	@Override
 	public void authentify(List<?> source) {
-		System.out.println("YOU ARE VALID USER");
+		if (Main.Sysout) {
+			System.out.println("An authentification attempt is being made");
+		}
 		
 	}
 }
