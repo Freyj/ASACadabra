@@ -76,7 +76,7 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 				else if (listeSource.size() > 3){
 					System.out.println("Notification pour " + this.getClass().getName() + " : " + 
 							listeSource.get(1) + " : " + listeSource.get(3) );
-					System.out.println("interface qui lance le machin " + listeSource.get(0));
+					//System.out.println("interface qui agit " + listeSource.get(0));
 				}
 			}
 			

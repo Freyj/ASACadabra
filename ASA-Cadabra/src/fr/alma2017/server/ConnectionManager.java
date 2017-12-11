@@ -14,15 +14,15 @@ public class ConnectionManager extends AComposant implements IComposant, IConnec
 	}
 
 	public void requestConnection(Object message) {
-		System.out.println("YOU HAZ REQUESTED A CONNECTION");
+		if (Main.Sysout) {
+			System.out.println("A connection has been requested");
+		}
 	}
 
 	@Override
 	public void notify(Object source) {
-		System.out.println("BEEP BOOP2");
 		if(source instanceof List<?>) {	
 			if(Main.Sysout) {
-				System.out.println("BEEP BOOP");
 				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
 						((List<Object>) source).get(0) + " : " + ((List<Object>) source).get(2) );
 			}

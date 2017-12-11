@@ -39,6 +39,8 @@ public class Server extends AComposant implements IComposant, IServer {
 
 	@Override
 	public void sendMessage(List<?> source) {
-
+		if (Main.Sysout) {
+			System.out.println("A message is being sent.");
+		}
 	}
 }

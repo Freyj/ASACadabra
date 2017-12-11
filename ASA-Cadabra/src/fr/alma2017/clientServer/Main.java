@@ -57,6 +57,9 @@ public class Main {
 		client.makeMessage();
 		client.setMessage("Piou");
 		client.sendMessage();
+		
+		//client.setMessage("Beeeeeep");
+		//client.sendMessage();
 	}
 
 }
