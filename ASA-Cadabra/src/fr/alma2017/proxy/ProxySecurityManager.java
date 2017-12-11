@@ -36,11 +36,10 @@ public class ProxySecurityManager implements InvocationHandler{
 				System.out.println("Proxy SecurityManager : " + this.target.getClass().getName() + " est observe par " + this.observer.size() + " objets.");
 			}
 			for(IObserver observer : this.observer) {
-				System.out.println("I AM A GENIUS");
 				if (args[0] instanceof List<?>) {		
-					System.out.println("I AM A GENIUS");
 					List<Object> sourceList = (List<Object>) args[0];
 					sourceList.add(0, ISecurityManager.class);
+					observer.notify(sourceList);
 				}
 			}
 		}			

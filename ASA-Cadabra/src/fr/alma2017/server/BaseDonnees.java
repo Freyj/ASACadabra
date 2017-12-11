@@ -26,6 +26,7 @@ public class BaseDonnees extends AComposant implements IComposant, IBaseDonnees 
 		//ajout d'un user pour l'example
 		//tout en clair, vive la securite \o/
 		addUtilisateur("bob", "example");
+		addUtilisateur("Enrique Castelanos", "Beep Boop");
 	}
 
 	/**
