@@ -8,6 +8,7 @@ import fr.alma2017.api.composant.IComposant;
 import fr.alma2017.api.configuration.IConfiguration;
 import fr.alma2017.api.configuration.IInterfaceConfiguration;
 import fr.alma2017.api.connecteur.IConnecteur;
+import fr.alma2017.api.server.IConnectionManager;
 import fr.alma2017.api.server.IServer;
 import fr.alma2017.client.Client;
 import fr.alma2017.configurationClass.AConfiguration;
@@ -67,16 +68,44 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 	@Override
 	public void notify(Object source) {
 		if(source instanceof List<?>) {	
+			List<?> listeSource = (List<?>) source;
 			if(Main.Sysout) {
-				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
-						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
+				if (listeSource.size() == 3 ) {
+				System.out.println("Notification pour la classe " + this.getClass().getName() + " : " + 
+						listeSource.get(0) + " : " + listeSource.get(2) );
+				}
+				else if (listeSource.size() > 3){
+					System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+							listeSource.get(1) + " : " + listeSource.get(3) );
+					//System.out.println("interface qui agit " + listeSource.get(0));
+				}
 			}
-			this.getServer().sendMessage((List<?>) source);
+			try{
+				System.out.println("\n-----------------\n");
+			    Thread.sleep(1000);
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
+			System.out.println("listeSource.get(0) instanceof String : " + listeSource.get(0) instanceof String);
+			if (listeSource.get(0) instanceof String) {
+				this.getServer().sendMessage(listeSource);
+			}
+			else if (listeSource.get(0).equals(IServer.class)) {
+				System.out.println("piooiesoingepnoieg");
+				this.getClient().receiveAnswer(listeSource.subList(1, listeSource.size()));
+			}
+			
+			//this.getServer().sendMessage((List<?>) source);
 		}
 	}
 	
 	@Override
 	public void sendMessage(IServer server, Object source) {
+		
+	}
+
+	@Override
+	public void sendAnswer(List<?> subList) {
 		
 	}
 	

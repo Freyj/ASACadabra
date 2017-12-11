@@ -8,4 +8,6 @@ public interface IServer extends IComposant {
 
 	public void sendMessage(List<?> source);
 
+	public void sendAnswer(List<?> subList);
+
 }

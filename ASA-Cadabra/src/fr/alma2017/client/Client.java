@@ -98,4 +98,15 @@ public class Client extends AComposant implements IComposant, IClient {
 		}
 	}
 
+	@Override
+	public void receiveAnswer(List<?> subList) {
+		System.out.println("RECEIVE ANSWER !");
+		if(subList instanceof List<?>) {	
+			if(Main.Sysout) {
+				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
+						((List<?>)subList).get(0) + " : " + ((List<?>)subList).get(2) );
+			}
+		}
+	}
+
 }

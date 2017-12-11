@@ -5,6 +5,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import fr.alma2017.api.IObserver;
+import fr.alma2017.api.clientServer.IClientServerConfiguration;
+import fr.alma2017.api.server.IBaseDonnees;
+import fr.alma2017.api.server.IServer;
 import fr.alma2017.api.server.IServerConfiguration;
 import fr.alma2017.clientServer.Main;
 
@@ -38,6 +41,20 @@ public class ProxyServer implements InvocationHandler {
 				if(observer instanceof IServerConfiguration) {
 					if(args[0] instanceof List<?>) {
 						observer.notify( args[0] );
+					}
+				}
+			}
+		}else if(method.getName().equals("sendAnswer") && this.observer != null){
+			ret = method.invoke(this.target, args);
+			if(Main.Sysout) {
+				System.out.println("Proxy Server : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
+			}
+			for(IObserver observer : this.observer) {
+				if(observer instanceof IClientServerConfiguration) {
+					if(args[0] instanceof List<?>) {		
+						List<Object> sourceList = (List<Object>) args[0];
+						sourceList.add(0, IServer.class);
+						observer.notify(sourceList);
 					}
 				}
 			}

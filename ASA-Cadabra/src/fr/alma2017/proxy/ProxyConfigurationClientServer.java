@@ -41,6 +41,16 @@ public class ProxyConfigurationClientServer implements InvocationHandler {
 					observer.notify( args );
 				}
 			}
+		}else if(method.getName().equals("sendMessage") && this.observer != null){
+			ret = method.invoke(this.target, args);
+			if(Main.Sysout) {
+				System.out.println("Proxy configurationClientServer : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
+			}
+			for(IObserver observer : this.observer) {
+				if(args[1] instanceof List<?>) {
+					observer.notify( args );
+				}
+			}
 		}else{
 			if(Main.Sysout) {
 				System.out.println("\tProxy configurationClientServer :  call " + method.getName());

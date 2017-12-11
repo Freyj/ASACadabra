@@ -55,19 +55,6 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 			//System.out.println("Size");
 			//System.out.println(listeSource.size());
 			System.out.println(listeSource.toString());
-			if (listeSource.get(0) instanceof String) {
-				this.getConnectionManager().requestConnection(listeSource);
-			}
-			else if (listeSource.get(0).equals(IConnectionManager.class)) {
-				this.getSecurityManager().authentify(listeSource.subList(1, listeSource.size()));
-			}
-			else if (listeSource.get(0).equals(ISecurityManager.class)) {
-				this.getBaseDonnees().getInfo(listeSource.subList(1, listeSource.size()));
-			}
-			else if (listeSource.get(0).equals(IBaseDonnees.class)) {
-				System.out.println("GIMME ALL DA DATA");
-				
-			}
 			if(Main.Sysout) {
 				if (listeSource.size() == 3 ) {
 				System.out.println("Notification pour la classe " + this.getClass().getName() + " : " + 
@@ -79,7 +66,24 @@ public class ServerConfiguration extends AConfiguration implements IConfiguratio
 					//System.out.println("interface qui agit " + listeSource.get(0));
 				}
 			}
-			
+			try{
+				System.out.println("\n-----------------\n");
+			    Thread.sleep(1000);
+			} catch(InterruptedException ex) {
+			    Thread.currentThread().interrupt();
+			}
+			if (listeSource.get(0) instanceof String) {
+				this.getConnectionManager().requestConnection(listeSource);
+			}
+			else if (listeSource.get(0).equals(IConnectionManager.class)) {
+				this.getSecurityManager().authentify(listeSource.subList(1, listeSource.size()));
+			}
+			else if (listeSource.get(0).equals(ISecurityManager.class)) {
+				this.getBaseDonnees().getInfo(listeSource.subList(1, listeSource.size()));
+			}
+			else if (listeSource.get(0).equals(IBaseDonnees.class)) {
+				this.getServer().sendAnswer(listeSource);
+			}
 			
 		} else if(Main.Sysout) {
 			System.out.println("Notification pour " + this.getClass().getName() + " : " + source.toString());

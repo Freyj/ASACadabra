@@ -43,4 +43,11 @@ public class Server extends AComposant implements IComposant, IServer {
 			System.out.println("A message is being sent.");
 		}
 	}
+
+	@Override
+	public void sendAnswer(List<?> subList) {
+		if (Main.Sysout) {
+			System.out.println("A answer is being sent.");
+		}
+	}
 }

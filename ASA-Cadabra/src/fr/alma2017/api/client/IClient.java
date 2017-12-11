@@ -22,4 +22,6 @@ public interface IClient extends IComposant {
 
 	public List<String> makeMessage();
 
+	public void receiveAnswer(List<?> subList);
+
 }
