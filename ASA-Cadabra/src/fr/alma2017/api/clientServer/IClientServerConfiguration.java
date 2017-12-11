@@ -11,5 +11,7 @@ public interface IClientServerConfiguration extends IConfiguration {
 	public IClient getClient();
 
 	public void sendMessage(IServer server, Object source);
+	
+	public void answerToClient(IClient client, Object source);
 
 }

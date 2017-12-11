@@ -21,5 +21,7 @@ public interface IClient extends IComposant {
 	public String getNomUtilisateur();
 
 	public List<String> makeMessage();
+	
+	public void receiveAnswer(List<?> source);
 
 }

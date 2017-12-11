@@ -24,31 +24,31 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 		this.composantsInternes = innerComposants;
 		this.connecteurs = connecteurs;
 	}
-	
+
 	public ClientServerConfiguration() throws NotProxiedClassException {
 		List<Class<?>> portRequis = new ArrayList<Class<?>>();
 		List<Class<?>> portFournis = new ArrayList<Class<?>>();
 		portRequis.add(IClient.class);
 		portRequis.add(IServer.class);
 		//portFournis.add(IRPC.class);
-		
+
 		interfaceConfiguration = new InterfaceConfiguration(portRequis, portFournis);
 		composantsInternes = new ArrayList<IComposant>();
 		connecteurs = new ArrayList<IConnecteur>();
-		
+
 		//instanciation du serveur
 		IServer server = (IServer) Proxifieur.getProxyFor(Server.getServer(), IServer.class);
 		composantsInternes.add(server);
-		
+
 		//instanciation du client
 		IClient client = (IClient) Proxifieur.getProxyFor(new Client(), IClient.class);
 		composantsInternes.add(client);
-    
+
 		//instanciation des connecteurs
 		//TODO
-		
+
 	}
-	
+
 	@Override
 	public IInterfaceConfiguration getInterface() {
 		return this.interfaceConfiguration;
@@ -71,15 +71,29 @@ public class ClientServerConfiguration extends AConfiguration implements IConfig
 				System.out.println("Notification pour " + this.getClass().getName() + " : " + 
 						((List<?>)source).get(0) + " : " + ((List<?>)source).get(2) );
 			}
-			this.getServer().sendMessage((List<?>) source);
+			if (((List<?>) source).get(0) instanceof String) {
+				if (Main.Sysout) {
+					System.out.println("I'm NOTIFIED");
+				}
+				this.getServer().sendMessage((List<?>) source);
+			}
+			else if (((List<?>) source).get(0).equals(IServer.class)) {
+				this.getClient().receiveAnswer((List<?>) source);
+				
+			}
 		}
 	}
-	
+
 	@Override
 	public void sendMessage(IServer server, Object source) {
-		
+
 	}
-	
+
+	@Override
+	public void answerToClient(IClient server, Object source) {
+
+	}
+
 	@Override
 	public IServer getServer() {
 		IServer res = null;

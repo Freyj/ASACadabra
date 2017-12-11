@@ -98,4 +98,13 @@ public class Client extends AComposant implements IComposant, IClient {
 		}
 	}
 
+	@Override
+	public void receiveAnswer(List<?> source) {
+		if (Main.Sysout) {
+			System.out.println("The client has received an answer");
+			
+		}
+		
+	}
+
 }

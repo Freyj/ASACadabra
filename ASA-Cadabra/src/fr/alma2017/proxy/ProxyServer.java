@@ -51,7 +51,7 @@ public class ProxyServer implements InvocationHandler {
 				System.out.println("Proxy Server : " + this.target.getClass().getName() + " est observee par " + this.observer.size() + " objets.");
 			}
 			for(IObserver observer : this.observer) {
-				if(observer instanceof IClientServerConfiguration) {
+				if(observer instanceof IServerConfiguration) {
 					if(args[0] instanceof List<?>) {
 						observer.notify( args[0] );
 					}
